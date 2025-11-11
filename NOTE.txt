@@ -1,0 +1,13 @@
+1. REGISTER.BLADE.PHP
+- bukti_pendaftaran => pernyataan_pkl
+- buktiPendaftaranInput => pernyataanPklInput
+- siak_ktm => permohonan_pkl
+- siakKtmInput => permohonanPklInput
+- bpi-number => nim
+- bpiInput => nimInput
+
+2. registercontroller
+- bpi_number = nim
+
+3. model -awardee
+- bpi_number = nim

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Official BPI UI</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./assets/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./assets/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./assets/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./assets/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./assets/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./assets/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./assets/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./assets/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./assets/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="./assets/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: 'Poppins', sans-serif">
+    <header class="absolute top-0 left-0 right-0 z-50">
+      <nav
+        class="border-gray-200 px-4 lg:px-6 fixed top-0 w-full transition-all duration-300 ease-in-out bg-white shadow"
+        id="navbar"
+      >
+        <div
+          class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+        >
+          <a href="./index.html" class="flex items-center">
+            <img
+              src="./assets/logo-bpi.png"
+              class="h-20 lg:h-24"
+              alt="BPI UI Logo"
+            />
+          </a>
+          <div class="flex items-center lg:order-2 lg:hidden">
+            <button
+              data-collapse-toggle="mobile-menu-2"
+              type="button"
+              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              aria-controls="mobile-menu-2"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                class="hidden w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            id="mobile-menu-2"
+          >
+            <hr class="mt-3" />
+            <ul
+              class="flex flex-col mt-4 font-medium lg:flex-row items-center gap-3 lg:gap-0 lg:mt-0 my-5"
+            >
+              <li class="flex items-center">
+                <a
+                  class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2"
+                  href="#"
+                >
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 -3 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>youtube [#168]</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Page-1"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Dribbble-Light-Preview"
+                          transform="translate(-300.000000, -7442.000000)"
+                          fill="currentColor"
+                        >
+                          <g
+                            id="icons"
+                            transform="translate(56.000000, 160.000000)"
+                          >
+                            <path
+                              d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289"
+                              id="youtube-[#168]"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+                <a
+                  class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2"
+                  href="#"
+                >
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>instagram [#167]</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Page-1"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Dribbble-Light-Preview"
+                          transform="translate(-340.000000, -7439.000000)"
+                          fill="currentColor"
+                        >
+                          <g
+                            id="icons"
+                            transform="translate(56.000000, 160.000000)"
+                          >
+                            <path
+                              d="M289.869652,7279.12273 C288.241769,7279.19618 286.830805,7279.5942 285.691486,7280.72871 C284.548187,7281.86918 284.155147,7283.28558 284.081514,7284.89653 C284.035742,7285.90201 283.768077,7293.49818 284.544207,7295.49028 C285.067597,7296.83422 286.098457,7297.86749 287.454694,7298.39256 C288.087538,7298.63872 288.809936,7298.80547 289.869652,7298.85411 C298.730467,7299.25511 302.015089,7299.03674 303.400182,7295.49028 C303.645956,7294.859 303.815113,7294.1374 303.86188,7293.08031 C304.26686,7284.19677 303.796207,7282.27117 302.251908,7280.72871 C301.027016,7279.50685 299.5862,7278.67508 289.869652,7279.12273 M289.951245,7297.06748 C288.981083,7297.0238 288.454707,7296.86201 288.103459,7296.72603 C287.219865,7296.3826 286.556174,7295.72155 286.214876,7294.84312 C285.623823,7293.32944 285.819846,7286.14023 285.872583,7284.97693 C285.924325,7283.83745 286.155174,7282.79624 286.959165,7281.99226 C287.954203,7280.99968 289.239792,7280.51332 297.993144,7280.90837 C299.135448,7280.95998 300.179243,7281.19026 300.985224,7281.99226 C301.980262,7282.98483 302.473801,7284.28014 302.071806,7292.99991 C302.028024,7293.96767 301.865833,7294.49274 301.729513,7294.84312 C300.829003,7297.15085 298.757333,7297.47145 289.951245,7297.06748 M298.089663,7283.68956 C298.089663,7284.34665 298.623998,7284.88065 299.283709,7284.88065 C299.943419,7284.88065 300.47875,7284.34665 300.47875,7283.68956 C300.47875,7283.03248 299.943419,7282.49847 299.283709,7282.49847 C298.623998,7282.49847 298.089663,7283.03248 298.089663,7283.68956 M288.862673,7288.98792 C288.862673,7291.80286 291.150266,7294.08479 293.972194,7294.08479 C296.794123,7294.08479 299.081716,7291.80286 299.081716,7288.98792 C299.081716,7286.17298 296.794123,7283.89205 293.972194,7283.89205 C291.150266,7283.89205 288.862673,7286.17298 288.862673,7288.98792 M290.655732,7288.98792 C290.655732,7287.16159 292.140329,7285.67967 293.972194,7285.67967 C295.80406,7285.67967 297.288657,7287.16159 297.288657,7288.98792 C297.288657,7290.81525 295.80406,7292.29716 293.972194,7292.29716 C292.140329,7292.29716 290.655732,7290.81525 290.655732,7288.98792"
+                              id="instagram-[#167]"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li class="flex items-center">
+                <a
+                  href="./login.html"
+                  class="focus:outline-none text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2"
+                  >Masuk
+                </a>
+              </li>
+              <li class="flex items-center">
+                <a
+                  href="./register.html"
+                  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2"
+                  >Daftar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section
+      class="px-10 xl:px-80 flex flex-col justify-center items-center min-h-screen gap-5 py-10 pt-24"
+    >
+      <div class="w-full bg-white border border-gray-200 rounded-lg shadow">
+        <div
+          class="flex flex-wrap justify-between text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50"
+        >
+          <div>
+            <button
+              class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100"
+            >
+              < Kembali
+            </button>
+            <p
+              class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 font-bold"
+            >
+              Admin
+            </p>
+          </div>
+          <p
+            class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 font-bold"
+          >
+            No Pengaduan
+          </p>
+        </div>
+        <div class="p-4 bg-white rounded-lg md:p-8 space-y-5">
+          <div class="flex items-start gap-2.5 w-fit">
+            <img
+              class="w-8 h-8 rounded-full"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt="Jese image"
+            />
+            <div class="flex flex-col gap-1 w-full max-w-[320px]">
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-semibold text-gray-900"
+                  >Bonnie Green</span
+                >
+                <span class="text-sm font-normal text-gray-500">11:46</span>
+              </div>
+              <div
+                class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl"
+              >
+                <p class="text-sm font-normal text-gray-900">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Voluptatum, natus.
+                </p>
+              </div>
+              <span class="text-sm font-normal text-gray-500">Delivered</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 ml-auto mr-0 w-fit">
+            <div class="flex flex-col gap-1 w-full max-w-[320px]">
+              <div class="flex items-center justify-end space-x-2">
+                <span class="text-sm font-semibold text-gray-900">Bob</span>
+                <span class="text-sm font-normal text-gray-500">11:59</span>
+              </div>
+              <div
+                class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-ee-xl"
+              >
+                <p class="text-sm font-normal text-gray-900">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam
+                  eos quis asperiores architecto eaque quos optio esse, enim
+                  maiores facilis.
+                </p>
+              </div>
+              <span class="text-sm font-normal text-gray-500">Delivered</span>
+            </div>
+            <img
+              class="w-8 h-8 rounded-full"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt="Jese image"
+            />
+          </div>
+
+          <div class="flex items-start gap-2.5 w-fit">
+            <img
+              class="w-8 h-8 rounded-full"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt="Jese image"
+            />
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-semibold text-gray-900"
+                  >Bonnie Green</span
+                >
+                <span class="text-sm font-normal text-gray-500">11:46</span>
+              </div>
+              <div
+                class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl"
+              >
+                <div class="flex items-start bg-gray-50 rounded-xl p-2">
+                  <div class="me-2">
+                    <span
+                      class="flex items-center gap-2 text-sm font-medium text-gray-900 pb-2"
+                    >
+                      <svg
+                        fill="none"
+                        aria-hidden="true"
+                        class="w-5 h-5 flex-shrink-0"
+                        viewBox="0 0 20 21"
+                      >
+                        <g clip-path="url(#clip0_3173_1381)">
+                          <path
+                            fill="#E2E5E7"
+                            d="M5.024.5c-.688 0-1.25.563-1.25 1.25v17.5c0 .688.562 1.25 1.25 1.25h12.5c.687 0 1.25-.563 1.25-1.25V5.5l-5-5h-8.75z"
+                          />
+                          <path
+                            fill="#B0B7BD"
+                            d="M15.024 5.5h3.75l-5-5v3.75c0 .688.562 1.25 1.25 1.25z"
+                          />
+                          <path
+                            fill="#CAD1D8"
+                            d="M18.774 9.25l-3.75-3.75h3.75v3.75z"
+                          />
+                          <path
+                            fill="#F15642"
+                            d="M16.274 16.75a.627.627 0 01-.625.625H1.899a.627.627 0 01-.625-.625V10.5c0-.344.281-.625.625-.625h13.75c.344 0 .625.281.625.625v6.25z"
+                          />
+                          <path
+                            fill="#fff"
+                            d="M3.998 12.342c0-.165.13-.345.34-.345h1.154c.65 0 1.235.435 1.235 1.269 0 .79-.585 1.23-1.235 1.23h-.834v.66c0 .22-.14.344-.32.344a.337.337 0 01-.34-.344v-2.814zm.66.284v1.245h.834c.335 0 .6-.295.6-.605 0-.35-.265-.64-.6-.64h-.834zM7.706 15.5c-.165 0-.345-.09-.345-.31v-2.838c0-.18.18-.31.345-.31H8.85c2.284 0 2.234 3.458.045 3.458h-1.19zm.315-2.848v2.239h.83c1.349 0 1.409-2.24 0-2.24h-.83zM11.894 13.486h1.274c.18 0 .36.18.36.355 0 .165-.18.3-.36.3h-1.274v1.049c0 .175-.124.31-.3.31-.22 0-.354-.135-.354-.31v-2.839c0-.18.135-.31.355-.31h1.754c.22 0 .35.13.35.31 0 .16-.13.34-.35.34h-1.455v.795z"
+                          />
+                          <path
+                            fill="#CAD1D8"
+                            d="M15.649 17.375H3.774V18h11.875a.627.627 0 00.625-.625v-.625a.627.627 0 01-.625.625z"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_3173_1381">
+                            <path
+                              fill="#fff"
+                              d="M0 0h20v20H0z"
+                              transform="translate(0 .5)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      Dokumen Rahasia
+                    </span>
+                    <span class="flex text-xs font-normal text-gray-500 gap-2">
+                      12 Pages
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        class="self-center"
+                        width="3"
+                        height="4"
+                        viewBox="0 0 3 4"
+                        fill="none"
+                      >
+                        <circle cx="1.5" cy="2" r="1.5" fill="#6B7280" />
+                      </svg>
+                      18 MB
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        class="self-center"
+                        width="3"
+                        height="4"
+                        viewBox="0 0 3 4"
+                        fill="none"
+                      >
+                        <circle cx="1.5" cy="2" r="1.5" fill="#6B7280" />
+                      </svg>
+                      PDF
+                    </span>
+                  </div>
+                  <div class="inline-flex self-center items-center">
+                    <button
+                      class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
+                      type="button"
+                    >
+                      <svg
+                        class="w-4 h-4 text-gray-900"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"
+                        />
+                        <path
+                          d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <span class="text-sm font-normal text-gray-500">Delivered</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 w-fit">
+            <img
+              class="w-8 h-8 rounded-full"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt="Jese image"
+            />
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-semibold text-gray-900"
+                  >Bonnie Green</span
+                >
+                <span class="text-sm font-normal text-gray-500">11:46</span>
+              </div>
+              <div
+                class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl"
+              >
+                <p class="text-sm font-normal text-gray-900">
+                  Lorem ipsum dolor sit amet. 😅
+                </p>
+                <div class="group relative my-2.5">
+                  <div
+                    class="absolute w-full h-full bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center"
+                  >
+                    <button
+                      data-tooltip-target="download-image"
+                      class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none focus:ring-gray-50"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 16 18"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
+                        />
+                      </svg>
+                    </button>
+                    <div
+                      id="download-image"
+                      role="tooltip"
+                      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip"
+                    >
+                      Download image
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                    class="rounded-lg"
+                  />
+                </div>
+              </div>
+              <span class="text-sm font-normal text-gray-500">Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="flex items-center p-3 mx-auto">
+          <div class="relative w-full">
+            <input
+              type="text"
+              id="voice-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 p-2.5"
+              placeholder="Ketik sesuatu..."
+              required
+            />
+            <button
+              type="button"
+              class="absolute inset-y-0 end-0 flex items-center pe-3"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.6875 3.75C8.96439 3.75 7.5 5.23565 7.5 7.15385L7.5 15.4615C7.5 18.1444 9.55201 20.25 12 20.25C14.448 20.25 16.5 18.1444 16.5 15.4615V7.15385H18V15.4615C18 18.8963 15.351 21.75 12 21.75C8.649 21.75 6 18.8963 6 15.4615L6 7.15385C6 4.48383 8.06137 2.25 10.6875 2.25C13.3136 2.25 15.375 4.48383 15.375 7.15385V15.4615C15.375 17.3669 13.9013 18.9808 12 18.9808C10.0987 18.9808 8.625 17.3669 8.625 15.4615V7.15385H10.125V15.4615C10.125 16.615 11.0018 17.4808 12 17.4808C12.9982 17.4808 13.875 16.615 13.875 15.4615V7.15385C13.875 5.23565 12.4106 3.75 10.6875 3.75Z"
+                    fill="#080341"
+                  ></path>
+                </g>
+              </svg>
+            </button>
+          </div>
+          <button
+            type="submit"
+            class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-amber-600 rounded-lg border border-amber-700 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300"
+          >
+            Kirim
+          </button>
+        </form>
+      </div>
+    </section>
+    <a
+      href="https://wa.me/628123456789?text=Hallo"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-16 lg:w-20 aspect-square bg-gradient-to-tr from-green-500 to-emerald-400 fixed bottom-5 lg:bottom-10 rounded-full right-5 lg:right-10 text-white flex justify-center items-center shadow-2xl"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="#fff"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-[40px] h-[40px] lg:w-[56px] lg:h-[56px]"
+      >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M17.6 6.31999C16.8669 5.58141 15.9943 4.99596 15.033 4.59767C14.0716 4.19938 13.0406 3.99622 12 3.99999C10.6089 4.00135 9.24248 4.36819 8.03771 5.06377C6.83294 5.75935 5.83208 6.75926 5.13534 7.96335C4.4386 9.16745 4.07046 10.5335 4.06776 11.9246C4.06507 13.3158 4.42793 14.6832 5.12 15.89L4 20L8.2 18.9C9.35975 19.5452 10.6629 19.8891 11.99 19.9C14.0997 19.9001 16.124 19.0668 17.6222 17.5816C19.1205 16.0965 19.9715 14.0796 19.99 11.97C19.983 10.9173 19.7682 9.87634 19.3581 8.9068C18.948 7.93725 18.3505 7.05819 17.6 6.31999ZM12 18.53C10.8177 18.5308 9.65701 18.213 8.64 17.61L8.4 17.46L5.91 18.12L6.57 15.69L6.41 15.44C5.55925 14.0667 5.24174 12.429 5.51762 10.8372C5.7935 9.24545 6.64361 7.81015 7.9069 6.80322C9.1702 5.79628 10.7589 5.28765 12.3721 5.37368C13.9853 5.4597 15.511 6.13441 16.66 7.26999C17.916 8.49818 18.635 10.1735 18.66 11.93C18.6442 13.6859 17.9355 15.3645 16.6882 16.6006C15.441 17.8366 13.756 18.5301 12 18.53ZM15.61 13.59C15.41 13.49 14.44 13.01 14.26 12.95C14.08 12.89 13.94 12.85 13.81 13.05C13.6144 13.3181 13.404 13.5751 13.18 13.82C13.07 13.96 12.95 13.97 12.75 13.82C11.6097 13.3694 10.6597 12.5394 10.06 11.47C9.85 11.12 10.26 11.14 10.64 10.39C10.6681 10.3359 10.6827 10.2759 10.6827 10.215C10.6827 10.1541 10.6681 10.0941 10.64 10.04C10.64 9.93999 10.19 8.95999 10.03 8.56999C9.87 8.17999 9.71 8.23999 9.58 8.22999H9.19C9.08895 8.23154 8.9894 8.25465 8.898 8.29776C8.8066 8.34087 8.72546 8.403 8.66 8.47999C8.43562 8.69817 8.26061 8.96191 8.14676 9.25343C8.03291 9.54495 7.98287 9.85749 8 10.17C8.0627 10.9181 8.34443 11.6311 8.81 12.22C9.6622 13.4958 10.8301 14.5293 12.2 15.22C12.9185 15.6394 13.7535 15.8148 14.58 15.72C14.8552 15.6654 15.1159 15.5535 15.345 15.3915C15.5742 15.2296 15.7667 15.0212 15.91 14.78C16.0428 14.4856 16.0846 14.1583 16.03 13.84C15.94 13.74 15.81 13.69 15.61 13.59Z"
+            fill="#fff"
+          ></path>
+        </g>
+      </svg>
+    </a>
+    <button
+      id="scrollTop"
+      class="hidden fixed bottom-24 lg:bottom-32 lg:right-10 right-5 bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer z-50"
+      aria-label="Scroll to top"
+    >
+      ↑ Top
+    </button>
+  </body>
+</html>

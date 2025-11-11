@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Official BPI UI</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./assets/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./assets/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./assets/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./assets/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./assets/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./assets/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./assets/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./assets/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./assets/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./assets/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="./assets/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: 'Poppins', sans-serif">
+    <header class="absolute top-0 left-0 right-0 z-50">
+      <nav
+        class="border-gray-200 px-4 lg:px-6 fixed top-0 w-full transition-all duration-300 ease-in-out bg-white shadow"
+        id="navbar"
+      >
+        <div
+          class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+        >
+          <a href="./index.html" class="flex items-center">
+            <img
+              src="./assets/logo-bpi.png"
+              class="h-20 lg:h-24"
+              alt="BPI UI Logo"
+            />
+          </a>
+          <div class="flex items-center lg:order-2 lg:hidden">
+            <button
+              data-collapse-toggle="mobile-menu-2"
+              type="button"
+              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              aria-controls="mobile-menu-2"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                class="hidden w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            id="mobile-menu-2"
+          >
+            <hr class="mt-3" />
+            <ul
+              class="flex flex-col mt-4 font-medium lg:flex-row items-center gap-3 lg:gap-0 lg:mt-0 my-5"
+            >
+              <li class="flex items-center">
+                <a
+                  class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2"
+                  href="#"
+                >
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 -3 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>youtube [#168]</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Page-1"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Dribbble-Light-Preview"
+                          transform="translate(-300.000000, -7442.000000)"
+                          fill="currentColor"
+                        >
+                          <g
+                            id="icons"
+                            transform="translate(56.000000, 160.000000)"
+                          >
+                            <path
+                              d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289"
+                              id="youtube-[#168]"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+                <a
+                  class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2"
+                  href="#"
+                >
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>instagram [#167]</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Page-1"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Dribbble-Light-Preview"
+                          transform="translate(-340.000000, -7439.000000)"
+                          fill="currentColor"
+                        >
+                          <g
+                            id="icons"
+                            transform="translate(56.000000, 160.000000)"
+                          >
+                            <path
+                              d="M289.869652,7279.12273 C288.241769,7279.19618 286.830805,7279.5942 285.691486,7280.72871 C284.548187,7281.86918 284.155147,7283.28558 284.081514,7284.89653 C284.035742,7285.90201 283.768077,7293.49818 284.544207,7295.49028 C285.067597,7296.83422 286.098457,7297.86749 287.454694,7298.39256 C288.087538,7298.63872 288.809936,7298.80547 289.869652,7298.85411 C298.730467,7299.25511 302.015089,7299.03674 303.400182,7295.49028 C303.645956,7294.859 303.815113,7294.1374 303.86188,7293.08031 C304.26686,7284.19677 303.796207,7282.27117 302.251908,7280.72871 C301.027016,7279.50685 299.5862,7278.67508 289.869652,7279.12273 M289.951245,7297.06748 C288.981083,7297.0238 288.454707,7296.86201 288.103459,7296.72603 C287.219865,7296.3826 286.556174,7295.72155 286.214876,7294.84312 C285.623823,7293.32944 285.819846,7286.14023 285.872583,7284.97693 C285.924325,7283.83745 286.155174,7282.79624 286.959165,7281.99226 C287.954203,7280.99968 289.239792,7280.51332 297.993144,7280.90837 C299.135448,7280.95998 300.179243,7281.19026 300.985224,7281.99226 C301.980262,7282.98483 302.473801,7284.28014 302.071806,7292.99991 C302.028024,7293.96767 301.865833,7294.49274 301.729513,7294.84312 C300.829003,7297.15085 298.757333,7297.47145 289.951245,7297.06748 M298.089663,7283.68956 C298.089663,7284.34665 298.623998,7284.88065 299.283709,7284.88065 C299.943419,7284.88065 300.47875,7284.34665 300.47875,7283.68956 C300.47875,7283.03248 299.943419,7282.49847 299.283709,7282.49847 C298.623998,7282.49847 298.089663,7283.03248 298.089663,7283.68956 M288.862673,7288.98792 C288.862673,7291.80286 291.150266,7294.08479 293.972194,7294.08479 C296.794123,7294.08479 299.081716,7291.80286 299.081716,7288.98792 C299.081716,7286.17298 296.794123,7283.89205 293.972194,7283.89205 C291.150266,7283.89205 288.862673,7286.17298 288.862673,7288.98792 M290.655732,7288.98792 C290.655732,7287.16159 292.140329,7285.67967 293.972194,7285.67967 C295.80406,7285.67967 297.288657,7287.16159 297.288657,7288.98792 C297.288657,7290.81525 295.80406,7292.29716 293.972194,7292.29716 C292.140329,7292.29716 290.655732,7290.81525 290.655732,7288.98792"
+                              id="instagram-[#167]"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li class="flex items-center">
+                <a
+                  href="./login.html"
+                  class="focus:outline-none text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2"
+                  >Masuk
+                </a>
+              </li>
+              <li class="flex items-center">
+                <a
+                  href="./register.html"
+                  class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2"
+                  >Daftar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div
+      class="mx-auto h-[20rem] w-full bg-cover bg-center bg-no-repeat relative mt-14 lg:mt-20"
+      style="
+        background-image: url('https://www.ui.ac.id/wp-content/uploads/2024/03/UI-RIK-scaled.jpg');
+      "
+    >
+      <div class="absolute top-0 bg-black w-full h-full opacity-40"></div>
+      <div
+        class="container flex flex-col flex-wrap content-center items-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 justify-center p-4 mx-auto md:py-28 text-white absolute"
+      >
+        <h1 class="text-5xl antialiased font-bold text-center md:text-6xl">
+          Pengaduan BPI UI
+        </h1>
+      </div>
+    </div>
+    <section
+      class="px-10 flex flex-col justify-center items-center min-h-screen gap-5 py-10"
+    >
+      <a
+        href="./tambah-pengaduan.html"
+        type="button"
+        class="focus:outline-none self-end text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+      >
+        Tambah Pengaduan Baru
+      </a>
+      <div
+        class="w-full flex flex-wrap flex-col lg:flex-row gap-5 justify-between"
+      >
+        <form class="max-w-md w-full order-2 lg:order-1">
+          <label
+            for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only"
+            >Search</label
+          >
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-amber-500 focus:border-amber-500"
+              placeholder="Cari No pengaduan, No BPI, Nama..."
+              required
+            />
+            <button
+              type="submit"
+              class="text-white absolute end-2.5 bottom-2.5 bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-4 py-2"
+            >
+              Cari
+            </button>
+          </div>
+        </form>
+        <div class="flex gap-2 order-1 lg:order-2">
+          <button
+            type="button"
+            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            Filter
+          </button>
+          <button
+            type="button"
+            class="flex items-center gap-3 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            <svg
+              class="w-6 h-6 hidden lg:block"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M4 4C4 3.44772 4.44772 3 5 3H14H14.5858C14.851 3 15.1054 3.10536 15.2929 3.29289L19.7071 7.70711C19.8946 7.89464 20 8.149 20 8.41421V20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V4Z"
+                  stroke="#200E32"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>
+                <path
+                  d="M20 8H15V3"
+                  stroke="#200E32"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M11.5 13L11.5 17L13 17"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M16.5 13H16C15.4477 13 15 13.4477 15 14V14C15 14.5523 15.4477 15 16 15V15C16.5523 15 17 15.4477 17 16V16C17 16.5523 16.5523 17 16 17H15"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M9.5 13L7 17"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M7 13L9.5 17"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+            Export Excel
+          </button>
+          <button
+            type="button"
+            class="flex items-center gap-3 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            <svg
+              class="w-6 h-6 hidden lg:block"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M4 4C4 3.44772 4.44772 3 5 3H14H14.5858C14.851 3 15.1054 3.10536 15.2929 3.29289L19.7071 7.70711C19.8946 7.89464 20 8.149 20 8.41421V20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V4Z"
+                  stroke="#200E32"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>
+                <path
+                  d="M20 8H15V3"
+                  stroke="#200E32"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M11.5 13H11V17H11.5C12.6046 17 13.5 16.1046 13.5 15C13.5 13.8954 12.6046 13 11.5 13Z"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M15.5 17V13L17.5 13"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M16 15H17"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M7 17L7 15.5M7 15.5L7 13L7.75 13C8.44036 13 9 13.5596 9 14.25V14.25C9 14.9404 8.44036 15.5 7.75 15.5H7Z"
+                  stroke="#200E32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+            Export PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" class="p-4">No</th>
+              <th scope="col" class="px-6 py-3">Time Stamp</th>
+              <th scope="col" class="px-6 py-3">No Pengaduan</th>
+              <th scope="col" class="px-6 py-3">No BPI</th>
+              <th scope="col" class="px-6 py-3">Nama</th>
+              <th scope="col" class="px-6 py-3">Jenjang</th>
+              <th scope="col" class="px-6 py-3">Jenis Aduan</th>
+              <th scope="col" class="px-6 py-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="w-4 p-4">
+                <div class="flex items-center">1</div>
+              </td>
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                02/02/2022 12:00
+              </th>
+              <td class="px-6 py-4">11111111</td>
+              <td class="px-6 py-4">22222222</td>
+              <td class="px-6 py-4">Bob</td>
+              <td class="px-6 py-4">S1 Bisnis</td>
+              <td class="px-6 py-4">Aduan</td>
+              <td class="px-6 py-4">
+                <div
+                  class="inline-flex flex-col rounded-md shadow-sm"
+                  role="group"
+                >
+                  <a
+                    href="./detail-pengaduan.html"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                    </svg>
+                    Detail
+                  </a>
+                  <a
+                    href="./thread.html"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      fill="#000000"
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M20 2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3v3.767L13.277 18H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14h-7.277L9 18.233V16H4V4h16v12z"
+                        ></path>
+                        <path d="M7 7h10v2H7zm0 4h7v2H7z"></path>
+                      </g>
+                    </svg>
+                    Thread
+                  </a>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-rose-500 border border-gray-200 rounded-b-lg hover:bg-rose-700 focus:z-10 focus:ring-2 focus:ring-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 1024 1024"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          fill="currentColor"
+                          d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
+                        ></path>
+                      </g>
+                    </svg>
+                    Hapus
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="w-4 p-4">
+                <div class="flex items-center">1</div>
+              </td>
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                02/02/2022 12:00
+              </th>
+              <td class="px-6 py-4">11111111</td>
+              <td class="px-6 py-4">22222222</td>
+              <td class="px-6 py-4">Bob</td>
+              <td class="px-6 py-4">S1 Bisnis</td>
+              <td class="px-6 py-4">Aduan</td>
+              <td class="px-6 py-4">
+                <div
+                  class="inline-flex flex-col rounded-md shadow-sm"
+                  role="group"
+                >
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                    </svg>
+                    Detail
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      fill="#000000"
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M20 2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3v3.767L13.277 18H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14h-7.277L9 18.233V16H4V4h16v12z"
+                        ></path>
+                        <path d="M7 7h10v2H7zm0 4h7v2H7z"></path>
+                      </g>
+                    </svg>
+                    Thread
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-rose-500 border border-gray-200 rounded-b-lg hover:bg-rose-700 focus:z-10 focus:ring-2 focus:ring-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 1024 1024"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          fill="currentColor"
+                          d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
+                        ></path>
+                      </g>
+                    </svg>
+                    Hapus
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="w-4 p-4">
+                <div class="flex items-center">1</div>
+              </td>
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                02/02/2022 12:00
+              </th>
+              <td class="px-6 py-4">11111111</td>
+              <td class="px-6 py-4">22222222</td>
+              <td class="px-6 py-4">Bob</td>
+              <td class="px-6 py-4">S1 Bisnis</td>
+              <td class="px-6 py-4">Aduan</td>
+              <td class="px-6 py-4">
+                <div
+                  class="inline-flex flex-col rounded-md shadow-sm"
+                  role="group"
+                >
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                    </svg>
+                    Detail
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      fill="#000000"
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M20 2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3v3.767L13.277 18H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14h-7.277L9 18.233V16H4V4h16v12z"
+                        ></path>
+                        <path d="M7 7h10v2H7zm0 4h7v2H7z"></path>
+                      </g>
+                    </svg>
+                    Thread
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-rose-500 border border-gray-200 rounded-b-lg hover:bg-rose-700 focus:z-10 focus:ring-2 focus:ring-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 1024 1024"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          fill="currentColor"
+                          d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
+                        ></path>
+                      </g>
+                    </svg>
+                    Hapus
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td class="w-4 p-4">
+                <div class="flex items-center">1</div>
+              </td>
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                02/02/2022 12:00
+              </th>
+              <td class="px-6 py-4">11111111</td>
+              <td class="px-6 py-4">22222222</td>
+              <td class="px-6 py-4">Bob</td>
+              <td class="px-6 py-4">S1 Bisnis</td>
+              <td class="px-6 py-4">Aduan</td>
+              <td class="px-6 py-4">
+                <div
+                  class="inline-flex flex-col rounded-md shadow-sm"
+                  role="group"
+                >
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z"
+                          stroke="#000000"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                    </svg>
+                    Detail
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-slate-700 focus:z-10 focus:ring-2 focus:ring-slate-700 focus:text-slate-700"
+                  >
+                    <svg
+                      fill="#000000"
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M20 2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3v3.767L13.277 18H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14h-7.277L9 18.233V16H4V4h16v12z"
+                        ></path>
+                        <path d="M7 7h10v2H7zm0 4h7v2H7z"></path>
+                      </g>
+                    </svg>
+                    Thread
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-rose-500 border border-gray-200 rounded-b-lg hover:bg-rose-700 focus:z-10 focus:ring-2 focus:ring-slate-700"
+                  >
+                    <svg
+                      class="w-4 h-4 me-2"
+                      viewBox="0 0 1024 1024"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          fill="currentColor"
+                          d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z"
+                        ></path>
+                      </g>
+                    </svg>
+                    Hapus
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav
+          class="flex items-center flex-column flex-wrap md:flex-row justify-between py-4 px-10"
+          aria-label="Table navigation"
+        >
+          <span
+            class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto"
+            >Showing
+            <span class="font-semibold text-gray-900">1-10</span>
+            of
+            <span class="font-semibold text-gray-900">1000</span></span
+          >
+          <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+                >Previous</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                >1</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                >2</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                aria-current="page"
+                class="flex items-center justify-center px-3 h-8 text-slate-600 border border-gray-300 bg-slate-50 hover:bg-slate-100 hover:text-slate-700"
+                >3</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                >4</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                >5</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+                >Next</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <a
+      href="https://wa.me/628123456789?text=Hallo"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-16 lg:w-20 aspect-square bg-gradient-to-tr from-green-500 to-emerald-400 fixed bottom-5 lg:bottom-10 rounded-full right-5 lg:right-10 text-white flex justify-center items-center shadow-2xl"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="#fff"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-[40px] h-[40px] lg:w-[56px] lg:h-[56px]"
+      >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M17.6 6.31999C16.8669 5.58141 15.9943 4.99596 15.033 4.59767C14.0716 4.19938 13.0406 3.99622 12 3.99999C10.6089 4.00135 9.24248 4.36819 8.03771 5.06377C6.83294 5.75935 5.83208 6.75926 5.13534 7.96335C4.4386 9.16745 4.07046 10.5335 4.06776 11.9246C4.06507 13.3158 4.42793 14.6832 5.12 15.89L4 20L8.2 18.9C9.35975 19.5452 10.6629 19.8891 11.99 19.9C14.0997 19.9001 16.124 19.0668 17.6222 17.5816C19.1205 16.0965 19.9715 14.0796 19.99 11.97C19.983 10.9173 19.7682 9.87634 19.3581 8.9068C18.948 7.93725 18.3505 7.05819 17.6 6.31999ZM12 18.53C10.8177 18.5308 9.65701 18.213 8.64 17.61L8.4 17.46L5.91 18.12L6.57 15.69L6.41 15.44C5.55925 14.0667 5.24174 12.429 5.51762 10.8372C5.7935 9.24545 6.64361 7.81015 7.9069 6.80322C9.1702 5.79628 10.7589 5.28765 12.3721 5.37368C13.9853 5.4597 15.511 6.13441 16.66 7.26999C17.916 8.49818 18.635 10.1735 18.66 11.93C18.6442 13.6859 17.9355 15.3645 16.6882 16.6006C15.441 17.8366 13.756 18.5301 12 18.53ZM15.61 13.59C15.41 13.49 14.44 13.01 14.26 12.95C14.08 12.89 13.94 12.85 13.81 13.05C13.6144 13.3181 13.404 13.5751 13.18 13.82C13.07 13.96 12.95 13.97 12.75 13.82C11.6097 13.3694 10.6597 12.5394 10.06 11.47C9.85 11.12 10.26 11.14 10.64 10.39C10.6681 10.3359 10.6827 10.2759 10.6827 10.215C10.6827 10.1541 10.6681 10.0941 10.64 10.04C10.64 9.93999 10.19 8.95999 10.03 8.56999C9.87 8.17999 9.71 8.23999 9.58 8.22999H9.19C9.08895 8.23154 8.9894 8.25465 8.898 8.29776C8.8066 8.34087 8.72546 8.403 8.66 8.47999C8.43562 8.69817 8.26061 8.96191 8.14676 9.25343C8.03291 9.54495 7.98287 9.85749 8 10.17C8.0627 10.9181 8.34443 11.6311 8.81 12.22C9.6622 13.4958 10.8301 14.5293 12.2 15.22C12.9185 15.6394 13.7535 15.8148 14.58 15.72C14.8552 15.6654 15.1159 15.5535 15.345 15.3915C15.5742 15.2296 15.7667 15.0212 15.91 14.78C16.0428 14.4856 16.0846 14.1583 16.03 13.84C15.94 13.74 15.81 13.69 15.61 13.59Z"
+            fill="#fff"
+          ></path>
+        </g>
+      </svg>
+    </a>
+    <button
+      id="scrollTop"
+      class="hidden fixed bottom-24 lg:bottom-32 lg:right-10 right-5 bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer z-50"
+      aria-label="Scroll to top"
+    >
+      ↑ Top
+    </button>
+  </body>
+</html>
