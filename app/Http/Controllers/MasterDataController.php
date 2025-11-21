@@ -258,8 +258,8 @@ class MasterDataController extends Controller
     {
         $mitras = Mitra::all();
         $totalPartners = Mitra::count();
-        $totalActivePartners = Mitra::where('status', '=', 1 )->count();
-        $totalNonActivePartners = Mitra::where('status', '=', 0 )->count();
+        $totalActivePartners = Mitra::where('status', '=', '1' )->count();
+        $totalNonActivePartners = Mitra::where('status', '=', '0' )->count();
         return view('admin.masterData.partner.partnerIndex')->with([
             'mitras' => $mitras,
             'totalPartners' => $totalPartners,
@@ -377,6 +377,31 @@ class MasterDataController extends Controller
         $mitras = Mitra::where('status', $status)->get();
 
         return Excel::download(new PartnersExport($mitras), 'users.xlsx');
+    }
+
+    public function updatePartnerStatus(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'numeric', 'exists:mitras,id']
+        ]);
+
+        $mitra = Mitra::findOrFail($request->id);
+
+        $currStatus = $mitra->status;
+
+        // Toggle faq status based on current status
+        if ($currStatus == 0) {
+            $mitra->status = 1;
+        } elseif($currStatus == 1) {
+            $mitra->status = 0;
+        }
+
+        $mitra->save();
+
+        return response()->json([
+            'success' => true,
+            'msg' => 'Status berhasil diupdate'
+        ]);
     }
 
     

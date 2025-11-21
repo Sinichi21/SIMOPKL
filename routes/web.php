@@ -173,8 +173,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/partner', [MasterDataController::class, 'partnerIndex'])->name('partner.index');
             Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.create');
             Route::post('/partner/update', [MasterDataController::class, 'updatePartner'])->name('partner.update');
-            Route::get('/partner/{partner}', [MasterDataController::class, 'show'])->name('partner.show');
-            Route::get('/partner/edit/{partner}', [MasterDataController::class, 'editPartner'])->name('partner.edit');
+            Route::get('/partner/{mitra}', [MasterDataController::class, 'show'])->name('partner.show');
+            Route::get('/partner/edit/{mitra}', [MasterDataController::class, 'editPartner'])->name('partner.edit');
             Route::post('/partner/delete', [MasterDataController::class, 'deletePartner'])->name('partner.delete');
             Route::post('/partner/update/status', [MasterDataController::class, 'updatePartnerStatus'])->name('partner.update.status');
             Route::get('partner/export', [MasterDataController::class, 'exportExcel'])->name('partner.export');

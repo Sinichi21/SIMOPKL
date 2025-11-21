@@ -123,13 +123,12 @@
                             <td>{{ $mitra->status == '1' ? 'Mitra Aktif' : 'Mitra Non Aktif' }}</td>
                             <td>
                                 <div class="flex-row flex-wrap d-flex" style="gap: 0.5rem">
-                                    <a href="{{route('partner.show', ['partner' => $mitra->id])}}" class="w-100">
+                                    <a href="{{route('partner.show', ['mitra' => $mitra->id])}}" class="w-100">
                                         <button class="btn btn-primary btn-edit w-100">Detail</button>
                                     </a>
-                                    <a href="{{route('partner.edit', ['partner' => $mitra->id])}}" class="w-100">
+                                    <a href="{{route('partner.edit', ['mitra' => $mitra->id])}}" class="w-100">
                                         <button class="btn btn-warning btn-edit w-100">Edit</button>
                                     </a>
-                                    @if(!$mitra->status == '0')
                                     <button type="button" class="btn btn-info btn-status w-100"
                                         data-id="{{$mitra->id}}">{{$mitra->status == '0' ? 'Non Aktif' :
                                         'Aktif'}}</button>
@@ -137,7 +136,6 @@
                                         data-id="{{ $mitra->id }}">
                                         Delete
                                     </button>
-                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -178,7 +176,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{route('user.delete')}}",
+                        url: "{{route('partner.delete')}}",
                         data: data,
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}"
@@ -217,7 +215,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{route('user.update.status')}}",
+                        url: "{{route('partner.update.status')}}",
                         data: data,
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}"

@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('partner_name');
-            $table->string('descriuption')->nullable();
-            $table->string('enail')->nullable();
+            $table->string('description')->nullable();
+            $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('whatsapp_number');
             $table->text('address')->nullable();
             $table->string('website_address')->nullable();
             $table->string('image_url')->nullable();
-            $table->enum('status', ['0', '1'])->default('1');
+            $table->bool('status')->default('1');
         });
     }
 
