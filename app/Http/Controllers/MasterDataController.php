@@ -269,7 +269,13 @@ class MasterDataController extends Controller
     }
 
     # Create Partner
-    public function store(Request $request)
+
+    public function create()
+    {
+        return view('admin.masterData.partner.create');
+    }
+
+    public function storePartner(Request $request)
     {
         $validatedData = $request->validate([
             'partner_name' => ['required', 'string', 'min:1', 'max:255'],
@@ -279,12 +285,12 @@ class MasterDataController extends Controller
             'Whatsapp_number' => ['required'],
             'address' => ['required', 'string', 'min:1', 'max:500'],
             'website_address' => ['nullable', 'string', 'min:1', 'max:255'],
-            'image_url' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'status' => ['required', 'integer', Rule::in([0, 1])],
+            'logo_mitra' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'status' => ['required', 'integer'],
         ]);
 
         // Store uploaded files
-        $imagePath = $request->file('logo_mitra')->store('uploads/logo_mitra', 'public');
+        $imagePath = $request->file('logo_mitra')->store('uploads/partner-images', 'public');
 
         // Create a new Partners associated with the user
         Mitra::create([

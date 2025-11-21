@@ -171,7 +171,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/jenis-pengaduan/delete', [MasterDataController::class, 'deleteComplaintType'])->name('complaintType.delete');
 
             Route::get('/partner', [MasterDataController::class, 'partnerIndex'])->name('partner.index');
-            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.create');
+            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.store');
+            Route::get('/partner/create', [MasterDataController::class, 'create'])->name('partner.create');
             Route::post('/partner/update', [MasterDataController::class, 'updatePartner'])->name('partner.update');
             Route::get('/partner/{mitra}', [MasterDataController::class, 'show'])->name('partner.show');
             Route::get('/partner/edit/{mitra}', [MasterDataController::class, 'editPartner'])->name('partner.edit');
