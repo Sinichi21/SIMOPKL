@@ -312,18 +312,18 @@ class MasterDataController extends Controller
     }
 
     # Update Partner
-    public function update(Request $request)
+    public function updatePartner(Request $request)
     {
         $validatedData = $request->validate([
            'partner_name' => ['required', 'string', 'min:1', 'max:255'],
-            'email' => ['required', 'email', 'min:1', 'max:255', 'unique:mitras,email'],
+            'email' => ['required', 'email', 'min:1', 'max:255'],
             'description' => ['required', 'string', 'min:1', 'max:5000'],
             'phoneNumber' => ['required'],
             'Whatsapp_number' => ['required'],
             'address' => ['required', 'string', 'min:1', 'max:500'],
             'website_address' => ['nullable', 'string', 'min:1', 'max:255'],
-            'image_url' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'status' => ['required', 'integer', Rule::in([0, 1])],
+            'logo_mitra' => ['file', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'status' => ['required', 'integer'],
         ]);
 
         // Ambil data mitra yang akan diupdate
@@ -331,7 +331,7 @@ class MasterDataController extends Controller
 
         // Perbarui detail mitra
         $mitra->partner_name = $validatedData['partner_name'];
-        $user->email = $validatedData['email'];
+        $mitra->email = $validatedData['email'];
         $mitra->description = $validatedData['description'];
         $mitra->phone_number = $validatedData['phoneNumber'];
         $mitra->Whatsapp_number = $validatedData['Whatsapp_number'];
@@ -341,7 +341,7 @@ class MasterDataController extends Controller
 
         // Proses penyimpanan logo mitra
         if ($request->hasFile('logo_mitra')) {
-            if ($mitra->image_url && Storage::disk('public')->exists($mitra->immage_url)) {
+            if ($mitra->image_url && Storage::disk('public')->exists($mitra->image_url)) {
                 Storage::disk('public')->delete($mitra->image_url);
             }
             $mitra->image_url = $request->file('logo_mitra')->store('uploads/logo_mitra', 'public');
@@ -410,5 +410,9 @@ class MasterDataController extends Controller
         ]);
     }
 
-    
+    public function editPartner(Mitra $mitra)
+    {
+        return view('admin.masterData.partner.edit')->with('mitra', $mitra);
+    }
+
 }
