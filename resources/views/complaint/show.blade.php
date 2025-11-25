@@ -20,9 +20,9 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 mb-3">
-                        <label for="bpi_number">No. BPI</label>
+                        <label for="bpi_number">NIM</label>
                         <input type="text" class="form-control" id="bpi_number"
-                            value="{{$complaint->awardee->bpi_number}}" disabled>
+                            value="{{$complaint->awardee->nim}}" disabled>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="degree">Degree</label>

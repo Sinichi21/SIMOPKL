@@ -76,7 +76,7 @@ class ComplaintConctroller extends Controller
             'awardee_id' => $request->awardeeId,
             'complaint_type_id' => $request->complaintTypeId,
             'fullname' => $awardee->fullname,
-            'bpi_number' => $awardee->bpi_number,
+            'bpi_number' => $awardee->nim,
             'faculty' => $awardee->studyProgram->faculty->name,
             'study_program' => $awardee->studyProgram->name,
             'email' => $awardee->user->email
@@ -126,7 +126,7 @@ class ComplaintConctroller extends Controller
                     ->send(new UserComplaintMail(
                         $awardee->fullname,
                         $awardee->studyProgram->faculty->name,
-                        $awardee->bpi_number,
+                        $awardee->nim,
                         $complaintType->title
                      ));
                 Log::info('Email terkirim ke: ' . $admin->email);

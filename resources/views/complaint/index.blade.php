@@ -59,7 +59,7 @@
                             <th>No</th>
                             <th>Timestamp</th>
                             <th>No. Pengaduan</th>
-                            <th>No BPI</th>
+                            <th>NIM</th>
                             <th>Nama</th>
                             <th>Jenjang</th>
                             <th>Jenis Aduan</th>
@@ -84,7 +84,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $complaint->created_at }}</td>
                             <td>{{ $complaint->complaint_id }}</td>
-                            <td>{{ $complaint->awardee->bpi_number }}</td>
+                            <td>{{ $complaint->awardee->nim }}</td>
                             <td>{{ $complaint->awardee->fullname }}</td>
                             <td>
                                 {{$complaint->awardee->degree}} {{$complaint->awardee->studyProgram->faculty->name}}

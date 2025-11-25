@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BPI UI</title>
+    <title>SIMOPKL</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon" style="width: 5rem">
-                    <img src="{{asset('assets/logo-bpi.png')}}" alt="" class="h-auto w-100">
+                    <img src="{{asset('assets/logo-simopkl.png')}}" alt="" class="h-auto w-100">
                 </div>
             </a>
 
@@ -317,7 +317,7 @@
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="my-auto text-center copyright">
-                        <span>Copyright &copy; BPI UI {{date('Y')}}</span>
+                        <span>Copyright &copy; SIMOPKL {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>

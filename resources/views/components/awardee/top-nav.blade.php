@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BPI UI</title>
+    <title>SIMOPKL</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,9 +40,16 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon" style="width: 5rem">
-                    <img src="{{asset('assets/logo-bpi.png')}}" alt="" class="h-auto w-100">
+                    <img src="{{asset('assets/logo-simopkl.png')}}" alt="" class="h-auto w-100">
                 </div>
             </a>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{ Request::routeIs('admin.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.index')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="my-0 sidebar-divider">
@@ -52,7 +59,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Dashboard
+                Interface
             </div>
 
             <!-- Dokumen -->
@@ -69,12 +76,49 @@
                     <span>Dokumen</span></a>
             </li>
 
-            <!-- Payments -->
+            <!-- Dokumen -->
+            @php
+                $isPklActive = Request::routeIs('PKL.*');
+            @endphp
+            <li class="nav-item {{ $isPklActive ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="far fa-newspaper"></i>
+                    <span>PKL</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">PKL:</h6>
+                        <a class="collapse-item {{ Request::routeIs('landingpage.carolusel') ? 'active' : '' }}"
+                            href="{{route('landingpage.carolusel')}}">Registrasi</a>
+                        <a class="collapse-item {{ Request::routeIs('landingpage.iconmenu') ? 'active' : '' }}"
+                            href="{{route('landingpage.iconmenu')}}">Pelaksaaan</a>
+                        <a class="collapse-item {{ Request::routeIs('landingpage.tentang') ? 'active' : '' }}"
+                            href="{{route('landingpage.tentang')}}">Monev</a>
+                        <a class="collapse-item {{ Request::routeIs('landingpage.sosialmedia') ? 'active' : '' }}"
+                            href="{{route('landingpage.sosialmedia')}}">Akhir Pelaksaan</a>
+                        <a class="collapse-item {{ Request::routeIs('landingpage.kontak') ? 'active' : '' }}"
+                            href="{{route('landingpage.kontak')}}">Berkas Ujian Akhir</a>
+                        <a class="collapse-item" href="{{ route('news.berita') }}">Berkas Ujian Final</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Dokumen -->
+            <li class="nav-item {{ Request::routeIs('document.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('document.index')}}">
+                    <i class="fas fa-file"></i>
+                    <span>Monev Observasi PKL</span></a>
+            </li>
+
+
+
+            {{-- <!-- Payments -->
             <li class="nav-item {{ Request::routeIs('payments.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('payments.index')}}">
                     <i class="fas fa-credit-card"></i>
                     <span>Pembayaran</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -190,7 +234,7 @@
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="my-auto text-center copyright">
-                        <span>Copyright &copy; BPI UI {{date('Y')}}</span>
+                        <span>Copyright &copy; SIMOPKL {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>
