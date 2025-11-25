@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website Official BPI UI</title>
+    <title>Website Official SIMOPKL</title>
     <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/favicon/apple-icon-57x57.png')}}" />
     <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png" />
@@ -44,7 +44,7 @@
     id="navbar">
     <div class="flex flex-wrap items-center justify-between mx-auto h-[96px] max-w-[1280px]">
                 <a href="/" class="flex items-center">
-                    <img src="{{asset('assets/logo-bpi.png')}}" class="h-20 lg:h-24 relative -top-2" alt="BPI UI Logo" />
+                    <img src="{{asset('assets/logo-simopkl.png')}}" class="h-20 lg:h-24 relative -top-2" alt="SIMOPKL Logo" />
                 </a>
                 <div class="flex items-center lg:order-2 lg:hidden">
                     <button data-collapse-toggle="mobile-menu-2" type="button"

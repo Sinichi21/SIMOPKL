@@ -171,7 +171,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/jenis-pengaduan/delete', [MasterDataController::class, 'deleteComplaintType'])->name('complaintType.delete');
 
             Route::get('/partner', [MasterDataController::class, 'partnerIndex'])->name('partner.index');
-            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.create');
+            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.store');
+            Route::get('/partner/create', [MasterDataController::class, 'create'])->name('partner.create');
             Route::post('/partner/update', [MasterDataController::class, 'updatePartner'])->name('partner.update');
             Route::get('/partner/{mitra}', [MasterDataController::class, 'show'])->name('partner.show');
             Route::get('/partner/edit/{mitra}', [MasterDataController::class, 'editPartner'])->name('partner.edit');
@@ -180,9 +181,12 @@ Route::prefix('admin')->group(function () {
             Route::get('partner/export', [MasterDataController::class, 'exportExcel'])->name('partner.export');
 
             Route::get('/periode', [MasterDataController::class, 'PeriodIndex'])->name('Period.index');
-            Route::post('/periode', [MasterDataController::class, 'storePeriod'])->name('Period.create');
+            Route::post('/periode', [MasterDataController::class, 'storePeriod'])->name('Period.store');
+            Route::get('/periode/create', [MasterDataController::class, 'createPeriod'])->name('Period.create');
+            Route::get('periode/edit/{periode}', [MasterDataController::class, 'editPeriod'])->name('Period.edit');
             Route::post('/periode/update', [MasterDataController::class, 'updatePeriod'])->name('Period.update');
             Route::post('/periode/delete', [MasterDataController::class, 'deletePeriod'])->name('Period.delete');
+            Route::post('/periode/update/status', [MasterDataController::class, 'updatePeriodStatus'])->name('Period.update.status');
         });
 
         Route::prefix('logs')->group(function () {
@@ -279,4 +283,38 @@ Route::middleware('auth')->prefix('/awardee')->group(function () {
     Route::post('/profile/reset-password', [UserController::class, 'resetPasswordStore'])->name('awardee.resetPassword.store');
     Route::get('/profile/reset-password/{user}', [UserController::class, 'resetPassword'])->name('awardee.resetPassword');
     Route::get('/profile/{user}', [UserController::class, 'profile'])->name('awardee.profile');
+
+    Route::prefix('PKL')->group(function () {
+        Route::prefix('Registration')->group(function () {
+            Route::get('/', [UserController::class, 'registrationIndex'])->name('Registration.index');
+            Route::get('/guidelines', [UserController::class, 'downloadGuidelines'])->name('pkl.guidelines.download');
+            Route::get('/registration', [UserController::class, 'registrationCreate'])->name('Registration.create');
+            Route::post('/registration/store', [UserController::class, 'registrationStore'])->name('Registration.store');
+            Route::get('/registration/show/{register}', [UserController::class, 'registrationShow'])->name('Registration.show');
+            Route::post('/registration/update', [UserController::class, 'registrationUpdate'])->name('Registration.update');
+            Route::get('/registration/edit{register}', [UserController::class, 'registrationEdit'])->name('Registration.edit');
+            Route::post('/registration/cancel{register}', [UserController::class, 'registrationCancel'])->name('Registration.cancel');
+            Route::post('/registration/delete', [UserController::class, 'registrationDelete'])->name('Registration.delete');            
+        });
+
+        Route::prefix('implementation')->group(function () {
+            Route::get('/', [UserController::class, 'implementationIndex'])->name('Implementation.index');
+            Route::get('/period/{registration}', [UserController::class, 'showRegistration'])->name('Implementation.show');
+            Route::post('/implementation/update', [UserController::class, 'updateImplementation'])->name('Implementation.upload');
+            Route::prefix('logbook')->group(function () {
+                Route::get('/create', [UserController::class, 'logbookCreate'])->name('Logbook.Create');
+                Route::post('/store/{registration}', [UserController::class, 'storeLogbook'])->name('Logbook.store');
+                Route::get('/{registration}', [UserController::class, 'logbookIndex'])->name('Logbook.index');
+                Route::get('/edit/{logbook}', [UserController::class, 'logbookEdit'])->name('Logbook.edit');
+                Route::post('/update/{logbook}', [UserController::class, 'logbookUpdate'])->name('Logbook.update');
+                Route::post('/delete/{logbook}', [UserController::class, 'logbookDelete'])->name('Logbook.delete');
+            });
+        });
+
+        Route::prefix('monev')->group(function () {
+            Route::get('/', [UserController::class, 'monevIndex'])->name('Monev.index');
+            Route::get('/period/{registration}', [UserController::class, 'showMonevRegistration'])->name('Monev.show');
+            Route::post('/monev/update', [UserController::class, 'updateMonev'])->name('Monev.upload');
+        });
+    });
 });

@@ -119,7 +119,7 @@
                             <td>{{ $mitra->email }}</td>
                             <td>{{ $mitra->partner_name}}</td>
                             <td>{{ $mitra->address}}</td>
-                            <td>{{ $mitra->Whatsapp_number }}</td>
+                            <td>{{ $mitra->whatsapp_number }}</td>
                             <td>{{ $mitra->status == '1' ? 'Mitra Aktif' : 'Mitra Non Aktif' }}</td>
                             <td>
                                 <div class="flex-row flex-wrap d-flex" style="gap: 0.5rem">

@@ -269,7 +269,13 @@ class MasterDataController extends Controller
     }
 
     # Create Partner
-    public function store(Request $request)
+
+    public function create()
+    {
+        return view('admin.masterData.partner.create');
+    }
+
+    public function storePartner(Request $request)
     {
         $validatedData = $request->validate([
             'partner_name' => ['required', 'string', 'min:1', 'max:255'],
@@ -279,12 +285,12 @@ class MasterDataController extends Controller
             'Whatsapp_number' => ['required'],
             'address' => ['required', 'string', 'min:1', 'max:500'],
             'website_address' => ['nullable', 'string', 'min:1', 'max:255'],
-            'image_url' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'status' => ['required', 'integer', Rule::in([0, 1])],
+            'logo_mitra' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'status' => ['required', 'integer'],
         ]);
 
         // Store uploaded files
-        $imagePath = $request->file('logo_mitra')->store('uploads/logo_mitra', 'public');
+        $imagePath = $request->file('logo_mitra')->store('uploads/partner-images', 'public');
 
         // Create a new Partners associated with the user
         Mitra::create([
@@ -306,18 +312,18 @@ class MasterDataController extends Controller
     }
 
     # Update Partner
-    public function update(Request $request)
+    public function updatePartner(Request $request)
     {
         $validatedData = $request->validate([
            'partner_name' => ['required', 'string', 'min:1', 'max:255'],
-            'email' => ['required', 'email', 'min:1', 'max:255', 'unique:mitras,email'],
+            'email' => ['required', 'email', 'min:1', 'max:255'],
             'description' => ['required', 'string', 'min:1', 'max:5000'],
             'phoneNumber' => ['required'],
             'Whatsapp_number' => ['required'],
             'address' => ['required', 'string', 'min:1', 'max:500'],
             'website_address' => ['nullable', 'string', 'min:1', 'max:255'],
-            'image_url' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'status' => ['required', 'integer', Rule::in([0, 1])],
+            'logo_mitra' => ['file', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'status' => ['required', 'integer'],
         ]);
 
         // Ambil data mitra yang akan diupdate
@@ -325,7 +331,7 @@ class MasterDataController extends Controller
 
         // Perbarui detail mitra
         $mitra->partner_name = $validatedData['partner_name'];
-        $user->email = $validatedData['email'];
+        $mitra->email = $validatedData['email'];
         $mitra->description = $validatedData['description'];
         $mitra->phone_number = $validatedData['phoneNumber'];
         $mitra->Whatsapp_number = $validatedData['Whatsapp_number'];
@@ -335,7 +341,7 @@ class MasterDataController extends Controller
 
         // Proses penyimpanan logo mitra
         if ($request->hasFile('logo_mitra')) {
-            if ($mitra->image_url && Storage::disk('public')->exists($mitra->immage_url)) {
+            if ($mitra->image_url && Storage::disk('public')->exists($mitra->image_url)) {
                 Storage::disk('public')->delete($mitra->image_url);
             }
             $mitra->image_url = $request->file('logo_mitra')->store('uploads/logo_mitra', 'public');
@@ -404,5 +410,155 @@ class MasterDataController extends Controller
         ]);
     }
 
-    
+    # Partner Edit
+    public function editPartner(Mitra $mitra)
+    {
+        return view('admin.masterData.partner.edit')->with('mitra', $mitra);
+    }
+
+    # Periode
+    # Periode Index
+    public function PeriodIndex ()
+    {
+        $periodes = Periode::all();
+        $totalPeriods = Periode::count();
+        $totalActivePeriods = Periode::where('status', '=', '1' )->count();
+        $totalNonActivePeriods = Periode::where('status', '=', '0' )->count();
+        return view('admin.masterData.periode.index')->with([
+            'periodes' => $periodes,
+            'totalPeriods' => $totalPeriods,
+            'totalActivePeriods' => $totalActivePeriods,
+            'totalNonActivePeriods' => $totalNonActivePeriods,
+        ]); 
+    }
+
+    # Periode Create
+
+    public function createPeriod()
+    {
+        return view('admin.masterData.periode.create');
+    }
+
+    # Periode Store
+    public function storePeriod(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+            'status' => ['required', 'integer']
+        ]);
+
+        $periodName = $validated['name'];
+
+
+        // Cek apakah periode sudah ada
+        $periodExist = Periode::where('name', $periodName)->first();
+
+        if ($periodExist) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'errors' => ['Periode sudah tercatat']
+                ],
+                400
+            );
+        }
+
+        // Add new data
+        Periode::create([
+            'name' => $periodName, 
+            'start_date' => $validated['start_date'], 
+            'end_date' => $validated['end_date'],
+            'status' => $validated['status']
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'msg' => 'Data periode berhasil ditambah'
+        ], 201);
+    }
+
+    # Periode Edit
+    public function editPeriod(Periode $periode)
+    {
+        return view('admin.masterData.periode.edit')->with('periode', $periode);
+    }
+
+    # Periode Update
+    public function updatePeriod(Request $request)
+    {
+        $validated = $request->validate([
+            'periodId' => ['required', 'numeric', 'exists:periodes,id'],
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+            'status' => ['required', 'integer']
+        ]);
+
+
+        $id = $validated['periodId'];
+        $periodName = $validated['name'];
+        $startDate = $validated['start_date'];
+        $endDate = $validated['end_date'];
+        $status = $validated['status'];
+
+        $periodExist = Periode::findOrFail($id);
+
+        // Add new data
+        $periodExist->name = $periodName;
+        $periodExist->start_date = $startDate;
+        $periodExist->end_date = $endDate;
+        $periodExist->status = $status;
+        $periodExist->save();
+
+        return response()->json([
+            'success' => true,
+            'msg' => 'Data periode berhasil diedit'
+        ], 201);
+    }
+
+    # Periode Delete
+    public function deletePeriod(Request $request)
+    {
+        $validated = $request->validate([
+            'periodId' => ['required', 'numeric', 'exists:faculties,id'],
+        ]);
+
+        $id = $validated['periodId'];
+
+        Faculty::destroy($id);
+
+        return response()->json([
+            'success' => true,
+            'msg' => 'Data periode berhasil dihapus'
+        ], 201);
+    }
+
+    # Periode update status
+    public function updatePeriodStatus(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'numeric', 'exists:mitras,id']
+        ]);
+
+        $period = Periode::findOrFail($request->id);
+
+        $currStatus = $period->status;
+
+        // Toggle faq status based on current status
+        if ($currStatus == 0) {
+            $period->status = 1;
+        } elseif($currStatus == 1) {
+            $period->status = 0;
+        }
+
+        $period->save();
+
+        return response()->json([
+            'success' => true,
+            'msg' => 'Status berhasil diupdate'
+        ]);
+    }
+
 }

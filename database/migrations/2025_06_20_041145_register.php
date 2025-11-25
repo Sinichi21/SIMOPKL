@@ -13,6 +13,7 @@ return new class extends Migration
     {
           Schema::create('registers', function (Blueprint $table) {
             $table->id();
+            $table->string('registration_number')->unique();
 
             // Foreign keys
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

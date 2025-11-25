@@ -89,7 +89,7 @@
                             <!-- Card gambar -->
                             <div class="card shadow-sm w-100 mb-3" style="border-radius: 12px;">
                                 <div class="card-body d-flex justify-content-center align-items-center" style="height: 260px;">
-                                    <img src="{{ $mitra->image_url ? asset('storage/partner-images/' .$mitra->image_url) : asset('img/perusahaan.png') }}"
+                                    <img src="{{ $mitra->image_url ? asset('storage/' .$mitra->image_url) : asset('img/perusahaan.png') }}"
                                         class="img-fluid"
                                         style="max-height: 220px; object-fit: contain;">
                                 </div>
