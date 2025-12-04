@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
 
-class AdminProfileController extends Controller
+class ProfileController extends Controller
 {
     public function index()
     {

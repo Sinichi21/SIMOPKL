@@ -130,7 +130,7 @@
                                         <button class="btn btn-warning btn-edit w-100">Edit</button>
                                     </a>
                                     <button type="button" class="btn btn-info btn-status w-100"
-                                        data-id="{{$mitra->id}}">{{$mitra->status == '0' ? 'Non Aktif' :
+                                        data-id="{{$mitra->id}}">{{$mitra->status == '1' ? 'Non Aktif' :
                                         'Aktif'}}</button>
                                     <button type="button" class="btn btn-danger btn-delete w-100"
                                         data-id="{{ $mitra->id }}">

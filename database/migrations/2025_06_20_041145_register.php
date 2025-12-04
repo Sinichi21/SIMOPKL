@@ -14,9 +14,14 @@ return new class extends Migration
           Schema::create('registers', function (Blueprint $table) {
             $table->id();
             $table->string('registration_number')->unique();
+            $table->string('fullname');
+            $table->string('nim');
+            $table->string('faculty');
+            $table->string('study_program');
+            $table->string('email');    
 
             // Foreign keys
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('awardee_id')->onDelete('cascade');
             $table->foreignId('periode_id')->constrained('periodes')->onDelete('cascade');
             $table->foreignId('mitra_id')->constrained('mitras')->onDelete('cascade');
 

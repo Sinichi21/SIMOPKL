@@ -106,4 +106,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Register::class);
     }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

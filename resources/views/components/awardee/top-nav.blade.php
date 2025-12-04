@@ -89,24 +89,24 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="py-2 bg-white rounded collapse-inner">
                         <h6 class="collapse-header">PKL:</h6>
-                        <a class="collapse-item {{ Request::routeIs('landingpage.carolusel') ? 'active' : '' }}"
-                            href="{{route('landingpage.carolusel')}}">Registrasi</a>
-                        <a class="collapse-item {{ Request::routeIs('landingpage.iconmenu') ? 'active' : '' }}"
-                            href="{{route('landingpage.iconmenu')}}">Pelaksaaan</a>
-                        <a class="collapse-item {{ Request::routeIs('landingpage.tentang') ? 'active' : '' }}"
-                            href="{{route('landingpage.tentang')}}">Monev</a>
-                        <a class="collapse-item {{ Request::routeIs('landingpage.sosialmedia') ? 'active' : '' }}"
-                            href="{{route('landingpage.sosialmedia')}}">Akhir Pelaksaan</a>
-                        <a class="collapse-item {{ Request::routeIs('landingpage.kontak') ? 'active' : '' }}"
-                            href="{{route('landingpage.kontak')}}">Berkas Ujian Akhir</a>
-                        <a class="collapse-item" href="{{ route('news.berita') }}">Berkas Ujian Final</a>
+                        <a class="collapse-item {{ Request::routeIs('Registration.index') ? 'active' : '' }}"
+                            href="{{route('Registration.index')}}">Registrasi</a>
+                        <a class="collapse-item {{ Request::routeIs('Implementation.index') ? 'active' : '' }}"
+                            href="{{route('Implementation.index')}}">Pelaksaaan</a>
+                        <a class="collapse-item {{ Request::routeIs('Implementation.index') ? 'active' : '' }}"
+                            href="{{route('Implementation.index')}}">Monev</a>
+                        <a class="collapse-item {{ Request::routeIs('Implementation.index') ? 'active' : '' }}"
+                            href="{{route('Implementation.index')}}">Akhir Pelaksaan</a>
+                        <a class="collapse-item {{ Request::routeIs('Implementation.index') ? 'active' : '' }}"
+                            href="{{route('Implementation.index')}}">Berkas Ujian Akhir</a>
+                        <a class="collapse-item" href="{{ route('Implementation.index') }}">Berkas Ujian Final</a>
                     </div>
                 </div>
             </li>
 
             <!-- Dokumen -->
-            <li class="nav-item {{ Request::routeIs('document.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{route('document.index')}}">
+            <li class="nav-item {{ Request::routeIs('Monev.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('Monev.index')}}">
                     <i class="fas fa-file"></i>
                     <span>Monev Observasi PKL</span></a>
             </li>

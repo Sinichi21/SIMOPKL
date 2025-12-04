@@ -10,14 +10,14 @@
                 <h6>{{ \Carbon\Carbon::now()->format('d-m-Y') }}</h6>
             </div>
             <div class="mb-2 d-flex justify-content-end">
-                <a href="{{route('complaint.create')}}">
+                <a href="{{route('Registration.create')}}">
                     <button type="button" class="gap-1 btn btn-primary w-100">
-                        Tambah Baru
+                        Registrasi PKL
                     </button>
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered" id="registrationTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="registerTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -43,29 +43,29 @@
                         </tr>
                     </tfoot> --}}
                     <tbody>
-                        @foreach ($registrations as $registration)
+                        @foreach ($registers as $register)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $registration->registration_number }}</td>
-                            <td>{{ $registration->awardee->nim }}</td>
-                            <td>{{ $registration->awardee->fullname }}</td>
-                            <td>{{ $registration->periode->name }}</td>
+                            <td>{{ $register->registration_number }}</td>
+                            <td>{{ $register->awardee->nim }}</td>
+                            <td>{{ $register->awardee->fullname }}</td>
+                            <td>{{ $register->periode->name }}</td>
                             <td>
-                                {{$registration->mitra->name}}
+                                {{$register->mitra->name}}
                             </td>
-                            <td>{{ $registration->status }}</td>
+                            <td>{{ $register->status }}</td>
                             <td>
                                 <div class="flex-row flex-wrap d-flex" style="gap: 0.5rem">
-                                    <a href="{{route('Registration.show', ['register' => $registration->id])}}"
+                                    <a href="{{route('Registration.show', ['register' => $register->id])}}"
                                         class="w-100 btn btn-primary">
                                         Detail
                                     </a>
-                                    <a href="{{route('Registration.edit', ['register' => $registration->id])}}"
+                                    <a href="{{route('Registration.edit', ['register' => $register->id])}}"
                                         class="w-100">
                                         <button class="btn btn-warning w-100">Edit</button>
                                     </a>
                                     <button type="button" class="btn btn-danger btn-delete w-100"
-                                        data-id="{{$registration->id}}">Delete</button>
+                                        data-id="{{$register->id}}">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -141,7 +141,7 @@
     {{-- Tabel registrasi --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            const table = $('#registrationTable').DataTable({
+            const table = $('#registerTable').DataTable({
                 columnDefs: [
                     {width: '5%', targets: 0},
                     {width: '10%', targets: 7},

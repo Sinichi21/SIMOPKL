@@ -190,8 +190,8 @@
                                         Edit
                                     </button>
                                     <button class="btn btn-info btn-toggle-status w-100"
-                                        data-id="{{$periode->id}}">{{$periode->status == '0' ? 'Non Aktif' :
-                                        'Aktif'}}</button>
+                                        data-id="{{$periode->id}}">{{ $periode->status == '1' ? 'Non Aktif' :
+                                        'Aktif' }}</button>
                                     <button class="btn btn-danger btn-delete w-100"
                                         data-periode-id="{{$periode->id}}">Delete</button>
                                 </div>
