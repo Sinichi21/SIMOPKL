@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLandingPageController;
-use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplaintConctroller;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LoginController;
@@ -26,6 +26,7 @@ use App\Http\Controllers\AdminPaymentSettingsController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdminPaymentController;
+use App\Http\Controllers\PklController;
 
 /*
 |--------------------------------------------------------------------------
@@ -194,8 +195,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/logs/delete', [LogActivityController::class, 'delete'])->name('logs.delete');
         });
 
-        Route::get('/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
-        Route::post('/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');
+        Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile');
+        Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('admin.profile.update');
 
         Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
         Route::get('/faq/create', [FaqController::class, 'create'])->name('faq.create');
@@ -286,35 +287,37 @@ Route::middleware('auth')->prefix('/awardee')->group(function () {
 
     Route::prefix('PKL')->group(function () {
         Route::prefix('Registration')->group(function () {
-            Route::get('/', [UserController::class, 'registrationIndex'])->name('Registration.index');
-            Route::get('/guidelines', [UserController::class, 'downloadGuidelines'])->name('pkl.guidelines.download');
-            Route::get('/registration', [UserController::class, 'registrationCreate'])->name('Registration.create');
-            Route::post('/registration/store', [UserController::class, 'registrationStore'])->name('Registration.store');
-            Route::get('/registration/show/{register}', [UserController::class, 'registrationShow'])->name('Registration.show');
-            Route::post('/registration/update', [UserController::class, 'registrationUpdate'])->name('Registration.update');
-            Route::get('/registration/edit{register}', [UserController::class, 'registrationEdit'])->name('Registration.edit');
-            Route::post('/registration/cancel{register}', [UserController::class, 'registrationCancel'])->name('Registration.cancel');
-            Route::post('/registration/delete', [UserController::class, 'registrationDelete'])->name('Registration.delete');            
+            Route::get('/', [PklController::class, 'registrationIndex'])->name('Registration.index');
+            Route::get('/guidelines', [PklController::class, 'downloadGuidelines'])->name('pkl.guidelines.download');
+            Route::get('/registration', [PklController::class, 'registrationCreate'])->name('Registration.create');
+            Route::post('/registration/store', [PklController::class, 'registrationStore'])->name('Registration.store');
+            Route::get('/registration/show/{register}', [PklController::class, 'registrationShow'])->name('Registration.show');
+            Route::post('/registration/update', [PklController::class, 'registrationUpdate'])->name('Registration.update');
+            Route::get('/registration/edit{register}', [PklController::class, 'registrationEdit'])->name('Registration.edit');
+            Route::post('/registration/cancel{register}', [PklController::class, 'registrationCancel'])->name('Registration.cancel');
+            Route::post('/registration/delete', [PklController::class, 'registrationDelete'])->name('Registration.delete');
+            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.store');
+            Route::get('/partner/create', [MasterDataController::class, 'createAwardeePartner'])->name('Awardee.Partner.create');            
         });
 
         Route::prefix('implementation')->group(function () {
-            Route::get('/', [UserController::class, 'implementationIndex'])->name('Implementation.index');
-            Route::get('/period/{registration}', [UserController::class, 'showRegistration'])->name('Implementation.show');
-            Route::post('/implementation/update', [UserController::class, 'updateImplementation'])->name('Implementation.upload');
+            Route::get('/', [PklController::class, 'implementationIndex'])->name('Implementation.index');
+            Route::get('/period/{registration}', [PklController::class, 'showRegistration'])->name('Implementation.show');
+            Route::post('/implementation/update', [PklController::class, 'updateImplementation'])->name('Implementation.upload');
             Route::prefix('logbook')->group(function () {
-                Route::get('/create', [UserController::class, 'logbookCreate'])->name('Logbook.Create');
-                Route::post('/store/{registration}', [UserController::class, 'storeLogbook'])->name('Logbook.store');
-                Route::get('/{registration}', [UserController::class, 'logbookIndex'])->name('Logbook.index');
-                Route::get('/edit/{logbook}', [UserController::class, 'logbookEdit'])->name('Logbook.edit');
-                Route::post('/update/{logbook}', [UserController::class, 'logbookUpdate'])->name('Logbook.update');
-                Route::post('/delete/{logbook}', [UserController::class, 'logbookDelete'])->name('Logbook.delete');
+                Route::get('/create', [PklController::class, 'logbookCreate'])->name('Logbook.Create');
+                Route::post('/store/{registration}', [PklController::class, 'storeLogbook'])->name('Logbook.store');
+                Route::get('/{registration}', [PklController::class, 'logbookIndex'])->name('Logbook.index');
+                Route::get('/edit/{logbook}', [PklController::class, 'logbookEdit'])->name('Logbook.edit');
+                Route::post('/update/{logbook}', [PklController::class, 'logbookUpdate'])->name('Logbook.update');
+                Route::post('/delete/{logbook}', [PklController::class, 'logbookDelete'])->name('Logbook.delete');
             });
         });
 
         Route::prefix('monev')->group(function () {
-            Route::get('/', [UserController::class, 'monevIndex'])->name('Monev.index');
-            Route::get('/period/{registration}', [UserController::class, 'showMonevRegistration'])->name('Monev.show');
-            Route::post('/monev/update', [UserController::class, 'updateMonev'])->name('Monev.upload');
+            Route::get('/', [PklController::class, 'monevIndex'])->name('Monev.index');
+            Route::get('/period/{registration}', [PklController::class, 'showMonevRegistration'])->name('Monev.show');
+            Route::post('/monev/update', [PklController::class, 'updateMonev'])->name('Monev.upload');
         });
     });
 });

@@ -11,16 +11,21 @@ class Register extends Model
 
     protected $fillable = [
         'registration_number',
-        'user_id',
+        'awardee_id',
         'periode_id',
         'mitra_id',
+        'fullname',
+        'nim',
+        'faculty',
+        'study_program',
+        'email',
         'status',
     ];
 
-    // Relasi ke user (mahasiswa)
-    public function user()
+    // Relasi ke awardee (mahasiswa)
+    public function awardee()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Awardee::class);
     }
 
     // Relasi ke periode PKL

@@ -268,11 +268,18 @@ class MasterDataController extends Controller
         ]);
     }
 
-    # Create Partner
+    # Create Partner Admin
 
     public function create()
     {
         return view('admin.masterData.partner.create');
+    }
+
+    # Create Partner Awardee
+
+    public function createAwardeePartner()
+    {
+        return view('admin.masterData.partner.awardeeCreate');
     }
 
     public function storePartner(Request $request)
@@ -286,7 +293,7 @@ class MasterDataController extends Controller
             'address' => ['required', 'string', 'min:1', 'max:500'],
             'website_address' => ['nullable', 'string', 'min:1', 'max:255'],
             'logo_mitra' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'status' => ['required', 'integer'],
+            'status' => ['integer'],
         ]);
 
         // Store uploaded files
