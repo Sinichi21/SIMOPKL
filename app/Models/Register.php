@@ -20,6 +20,9 @@ class Register extends Model
         'study_program',
         'email',
         'status',
+        'unit',
+        'start_date',
+        'end_date',
     ];
 
     // Relasi ke awardee (mahasiswa)
@@ -44,5 +47,35 @@ class Register extends Model
     public function logbooks()
     {
         return $this->hasMany(Logbook::class);
+    }
+
+    // Relasi ke dokumen registrasi
+    public function registrationDocuments()
+    {
+        return $this->hasMany(RegistrationDocument::class, 'registration_id');
+    }
+
+    public function calculateProgress()
+    {
+        $progress = 0;
+
+        // Jika registrasi disetujui → tambah 20%
+        if ($this->status === 'Disetujui') {
+            $progress += 20;
+        }
+
+        // Hitung jumlah dokumen yang sudah disetujui
+        $approvedDocs = $this->registrationDocuments()
+            ->where('status', 'Disetujui')
+            ->count();
+
+        // Maksimal dokumen hanya 4
+        $maxDocs = 4;
+
+        // Setiap dokumen bernilai 20%
+        $progress += ($approvedDocs * 20);
+
+        // Batas maksimal tidak lebih dari 100
+        return min($progress, 100);
     }
 }

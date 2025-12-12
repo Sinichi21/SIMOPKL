@@ -9,7 +9,11 @@ use App\Models\Logbook;
 use App\Models\Mitra;
 use App\Models\Periode;
 use App\Models\User;
-use App\Models\Awardee;
+use App\Models\Awardee; 
+use App\Models\StudyProgram;
+use App\Models\Faculty;
+use App\Models\RegistratiomDocument;
+use App\Models\DocumentType;
 
 class PklController extends Controller
 {
@@ -46,7 +50,7 @@ class PklController extends Controller
         $sk_penerimaan_mitra = $request->file('sk_penerimaan_mitra')->store('documents/sk_penerimaan_mitra', 'public');
         $awardee = Awardee::findOrFail($request->awardeeId);
 
-        Register::create([
+        $register = Register::create([
             'registration_number' => now()->format('YmdHis'),
             'awardee_id' => $request->awardeeId,
             'periode_id' => $request->periodId,
@@ -57,6 +61,33 @@ class PklController extends Controller
             'study_program' => $awardee->studyProgram->name,
             'email' => $awardee->user->email
         ]);
+        RegistratiomDocument::create([
+            'register_id' => $register->id,
+            'document_type_id' => '1',
+            'file_path' => $form_2a
+            
+        ]);
+
+        RegistratiomDocument::create([
+            'register_id' => $register->id,
+            'document_type_id' => '2',
+            'file_path' => $form_2b
+            
+        ]);
+
+        RegistratiomDocument::create([
+            'register_id' => $register->id,
+            'document_type_id' => '3',
+            'file_path' => $transkrip_nilai
+            
+        ]);
+
+        RegistratiomDocument::create([
+            'register_id' => $register->id,
+            'document_type_id' => '4',
+            'file_path' => $sk_penerimaan_mitra
+            
+        ]);
         return redirect()->route('Registration.index')->with('success', 'Registrasi PKL berhasil diajukan.');
-    }   
+    }
 }

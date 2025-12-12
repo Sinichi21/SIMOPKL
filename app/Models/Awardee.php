@@ -37,4 +37,17 @@ class Awardee extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function registers()
+    {
+        return $this->hasMany(Register::class);
+    }
+
+    public function hasActiveRegistration($periodeId)
+    {
+        return $this->registers()
+            ->where('periode_id', $periodeId)
+            ->whereIn('status', ['pending', 'Disetujui'])
+            ->exists();
+    }
 }

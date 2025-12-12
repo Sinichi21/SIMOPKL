@@ -41,7 +41,6 @@ class RegisterController extends Controller
             'studyProgramId' => ['required', 'numeric', 'exists:study_programs,id'],
             'year' => ['required', 'numeric'],
             'bukti_pendaftaran' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:1024'],
-            'siak_ktm' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:1024'],
             'status' => ['required', 'integer', Rule::in([0, 1])],
         ]);
 
@@ -68,7 +67,6 @@ class RegisterController extends Controller
             'study_program_id' => $validatedData['studyProgramId'],
             'year' => $validatedData['year'],
             'bukti_pendaftaran' => $buktiPendaftaranPath,
-            'siak_ktm' => $siakKtmPath,
         ]);
 
         // testing

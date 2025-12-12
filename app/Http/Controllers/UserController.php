@@ -205,7 +205,7 @@ class UserController extends Controller
             Awardee::create([
                 'fullname' => $validatedData['fullname'],
                 'username' => $validatedData['username'],
-                'bpi_number' => $validatedData['bpiNumber'],
+                'nim' => $validatedData['bpiNumber'],
                 'degree' => $validatedData['degree'],
                 'phone_number' => $validatedData['phoneNumber'],
                 'user_id' => $user->id,

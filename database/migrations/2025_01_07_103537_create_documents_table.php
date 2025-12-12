@@ -15,6 +15,8 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('document_type_id'); 
             $table->string('name', 255);
             $table->text('description')->nullable();
             $table->string('file_path');
