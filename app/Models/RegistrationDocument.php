@@ -13,6 +13,7 @@ class RegistrationDocument  extends Model
         'registration_id',
         'document_type_id',
         'file_path',
+        'status'
     ];
 
     public function registration()
@@ -20,7 +21,7 @@ class RegistrationDocument  extends Model
         return $this->belongsTo(RegistrationPkl::class, 'registration_id');
     }
 
-    public function type()
+    public function documentType()
     {
         return $this->belongsTo(DocumentType::class, 'document_type_id');
     }

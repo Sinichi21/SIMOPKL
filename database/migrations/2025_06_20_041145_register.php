@@ -26,6 +26,9 @@ return new class extends Migration
             $table->foreignId('mitra_id')->constrained('mitras')->onDelete('cascade');
 
             $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
+            $table->string('unit')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

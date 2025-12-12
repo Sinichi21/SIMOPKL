@@ -19,6 +19,7 @@ class Mitra extends Model
         'website_address',
         'image_url',
         'status',
+        'type',
     ];
 
     public function registers()

@@ -13,7 +13,11 @@ class Document extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
+        'document_type_id',
         'description',
+        'admin_note',
+        'status',
         'file_path',
         'uploaded_at',
     ];

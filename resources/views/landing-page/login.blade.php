@@ -7,7 +7,7 @@
     <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center h-screen px-6 py-8 mx-auto lg:py-0">
             <a href="#" class="flex items-center">
-                <img src="./assets/logo-bpi.png" class="h-36 lg:h-48" alt="BPI UI Logo" />
+                <img src="./assets/logo-simopkl.png" class="h-36 lg:h-48" alt="BPI UI Logo" />
             </a>
             @if ($errors->any())
             <div id="alert-error"

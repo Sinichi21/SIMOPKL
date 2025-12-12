@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin-2-new.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2-simopkl.min.css') }}" rel="stylesheet">
 
     {{-- JQuery --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"

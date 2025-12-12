@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('registration_id');
             $table->unsignedBigInteger('document_type_id');
             $table->string('file_path');
+            $table->enum('status', ['Pending', 'Diterima', 'Ditolak'])->default('Pending');
             $table->timestamps();
 
             // Relasi
