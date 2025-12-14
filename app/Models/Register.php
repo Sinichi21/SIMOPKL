@@ -34,7 +34,7 @@ class Register extends Model
     // Relasi ke periode PKL
     public function periode()
     {
-        return $this->belongsTo(PeriodePkl::class, 'periode_id');
+        return $this->belongsTo(Periode::class, 'periode_id');
     }
 
     // Relasi ke mitra
@@ -78,4 +78,16 @@ class Register extends Model
         // Batas maksimal tidak lebih dari 100
         return min($progress, 100);
     }
+
+    // public function timelines()
+    // {
+    //     return $this->hasManyThrough(
+    //         PklTimeline::class,
+    //         Periode::class,
+    //         'id',           // FK di periodes
+    //         'periode_id',   // FK di pkl_timelines
+    //         'periode_id',   // FK di registers
+    //         'id'
+    //     );
+    // }
 }
