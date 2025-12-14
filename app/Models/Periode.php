@@ -25,4 +25,9 @@ class Periode extends Model
     {
         return $this->belongsToMany(Register::class, 'periode_id');
     }
+
+    public function timelines()
+    {
+        return $this->hasMany(PklTimeline::class);
+    }
 }
