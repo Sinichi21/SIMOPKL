@@ -29,7 +29,7 @@ jobs:
             docker compose build
             docker compose up -d
 
-            docker compose exec app php /var/www/artisan key:generate --force
-            docker compose exec app php /var/www/artisan migrate --force
-            docker compose exec app php /var/www/artisan optimize
+            docker compose exec app php artisan key:generate --force
+            docker compose exec app php artisan migrate --force
+            docker compose exec app php artisan optimize
           EOF
