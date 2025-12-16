@@ -29,6 +29,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware('auth:api')->group(function (){
+    Route::get('/study-program', [ApiPklController::class, 'studyProgramList']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/profile', [AuthController::class, 'profile']); // current user
     Route::post('/profile', [ApiUserController::class, 'updateProfile']);

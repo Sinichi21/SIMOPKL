@@ -30,7 +30,11 @@ class DatabaseSeeder extends Seeder
             SocialMediaLinkSeeder::class,
             slideshowImageSeeder::class,
             NewsSeeder::class,
-            CalendarEventSeeder::class
+            CalendarEventSeeder::class,
+            ComplaintTypeSeeder::class,
+            DocumentTypeSeeder::class,
+            FeeSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }

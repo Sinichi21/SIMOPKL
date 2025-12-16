@@ -149,7 +149,7 @@
                         $('#loadingModal').modal('show');
 
                         $.ajax({
-                            url: "{{ route('partner.store') }}",
+                            url: "{{ route('awardee.partner.store') }}",
                             type: 'POST',
                             data: formData,
                             processData: false,

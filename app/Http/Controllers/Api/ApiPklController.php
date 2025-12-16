@@ -770,5 +770,14 @@ class ApiPklController extends Controller
             'data' => $register,
         ], 200);
     }
+
+    function studyProgramList()
+    {
+        $studyPrograms = StudyProgram::with('faculty')->get();
+
+        return response()->json([
+            'study_programs' => $studyPrograms
+        ], 200);
+    }
 }
 

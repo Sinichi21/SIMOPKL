@@ -296,7 +296,7 @@ Route::middleware('auth')->prefix('/awardee')->group(function () {
             Route::get('/registration/edit{register}', [PklController::class, 'registrationEdit'])->name('Registration.edit');
             Route::post('/registration/cancel{register}', [PklController::class, 'registrationCancel'])->name('Registration.cancel');
             Route::post('/registration/delete', [PklController::class, 'registrationDelete'])->name('Registration.delete');
-            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('partner.store');
+            Route::post('/partner', [MasterDataController::class, 'storePartner'])->name('awardee.partner.store');
             Route::get('/partner/create', [MasterDataController::class, 'createAwardeePartner'])->name('Awardee.Partner.create');            
         });
 

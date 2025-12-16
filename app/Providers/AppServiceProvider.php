@@ -4,11 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 use App\Models\SocialMediaLink;
-use Illuminate\Auth\Passwords\PasswordBroker as IlluminatePasswordBroker;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\YourResetPasswordMail;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // $this->app->singleton('auth.password', function ($app) {
-        //     return new PasswordBrokerManager($app);
-        // });
+        //
     }
 
     /**
@@ -27,31 +22,56 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Ambil URL Instagram dari database
+        /**
+         * GUARD PALING AMAN:
+         * - Artisan (optimize, migrate, key:generate) → AMAN
+         * - Table belum ada → AMAN
+         */
+        if (
+            app()->runningInConsole() ||
+            !Schema::hasTable('social_media_links')
+        ) {
+            View::share([
+                'socialMediaUrl' => [
+                    'instagram' => (object)['url' => 'https://instagram.com/yourusername'],
+                    'youtube'   => (object)['url' => 'https://youtube.com/channel/yourchannel'],
+                ],
+                'kontak' => [
+                    'whatsapp' => (object)['url' => '081234567890'],
+                    'email'    => (object)['url' => 'dummy@example.com'],
+                ],
+                'waLink' => null,
+            ]);
+
+            return;
+        }
+
+        /**
+         * QUERY AMAN (HANYA JALAN JIKA TABLE ADA & WEB REQUEST)
+         */
         $socialMedia = [
-            'instagram' => SocialMediaLink::where('social_media', 'ig')->first() ?? (object)['url' => 'https://instagram.com/yourusername'],
-            'youtube' => SocialMediaLink::where('social_media', 'yt')->first() ?? (object)['url' => 'https://youtube.com/channel/yourchannel'],
+            'instagram' => SocialMediaLink::where('social_media', 'ig')->first()
+                ?? (object)['url' => 'https://instagram.com/yourusername'],
+            'youtube' => SocialMediaLink::where('social_media', 'yt')->first()
+                ?? (object)['url' => 'https://youtube.com/channel/yourchannel'],
         ];
 
         $kontak = [
-            'whatsapp' => SocialMediaLink::where('social_media', 'wa')->first() ?? (object)['url' => '081234567890'],
-            'email' => SocialMediaLink::where('social_media', 'mail')->first() ?? (object)['url' => 'dummy@example.com'],
+            'whatsapp' => SocialMediaLink::where('social_media', 'wa')->first()
+                ?? (object)['url' => '081234567890'],
+            'email' => SocialMediaLink::where('social_media', 'mail')->first()
+                ?? (object)['url' => 'dummy@example.com'],
         ];
 
-        if (isset($kontak['whatsapp'])) {
-            $whatsapplink = $kontak['whatsapp']->url !== 'dummy_whatsapp_link' ? 
-                     "https://wa.me/+62" . preg_replace('/[^1-9+]/', '', $kontak['whatsapp']->url) : 
-                     null;
-        } else {
-            // Handle the case when WhatsApp link is not found
-            $whatsapplink = null;
+        $waLink = null;
+        if (!empty($kontak['whatsapp']->url)) {
+            $waLink = 'https://wa.me/+62' . preg_replace('/[^0-9]/', '', $kontak['whatsapp']->url);
         }
 
-        // Bagikan data URL ke semua view
         View::share([
             'socialMediaUrl' => $socialMedia,
             'kontak' => $kontak,
-            'waLink' => $whatsapplink
+            'waLink' => $waLink,
         ]);
     }
 }

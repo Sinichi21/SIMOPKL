@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('website_address')->nullable();
             $table->string('image_url')->nullable();
-            $table->bool('status')->default('1');
+            $table->boolean('status')->default('1');
             $table->string('type')->nullable();
         });
     }
