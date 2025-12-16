@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: simopkl_dev_app
+    volumes:
+      - ./src:/var/www
+#    env_file:
+#      - ./src/.env
+    ports:
+      - "9000:9000"
+    networks:
+      - laravel
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: simopkl_dev
+      MYSQL_ROOT_PASSWORD: root123$
+      MYSQL_USER: simopkl
+      MYSQL_PASSWORD: simopkl123$
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  dbdata:
