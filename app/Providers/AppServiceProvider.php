@@ -4,8 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Schema;
 use App\Models\SocialMediaLink;
+use Illuminate\Auth\Passwords\PasswordBroker as IlluminatePasswordBroker;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\YourResetPasswordMail;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -75,3 +79,5 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 }
+
+
