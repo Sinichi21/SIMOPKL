@@ -18,7 +18,7 @@ class RegistrationDocument  extends Model
 
     public function registration()
     {
-        return $this->belongsTo(RegistrationPkl::class, 'registration_id');
+        return $this->belongsTo(Register::class, 'registration_id');
     }
 
     public function documentType()

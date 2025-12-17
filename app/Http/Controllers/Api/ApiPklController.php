@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -777,6 +778,199 @@ class ApiPklController extends Controller
 
         return response()->json([
             'study_programs' => $studyPrograms
+        ], 200);
+    }
+
+    public function awardeeDashboard()
+    {
+        $awardee = Auth::user()->awardee;
+
+        if (!$awardee) {
+            return response()->json([
+                'message' => 'Awardee tidak ditemukan'
+            ], 404);
+        }
+
+        // =========================
+        // REGISTRASI AKTIF
+        // =========================
+        $register = $awardee->registers()
+            ->whereIn('status', ['pending', 'Disetujui'])
+            ->latest()
+            ->with(['registrationDocuments', 'periode', 'mitra'])
+            ->first();
+
+        if (!$register) {
+            return response()->json([
+                'progress' => [
+                    'status' => 'belum_daftar',
+                    'percentage' => 0,
+                    'current_week' => 0,
+                    'total_weeks' => 0
+                ],
+                'mitra' => Mitra::select('id','partner_name','address')->get(),
+                'timeline' => []
+            ]);
+        }
+
+        // =========================
+        // HITUNG PROGRES WAKTU PKL
+        // =========================
+        $start = Carbon::parse($register->start_date);
+        $end   = Carbon::parse($register->end_date);
+        $today = Carbon::today();
+
+        $totalWeeks = max($start->diffInWeeks($end) + 1, 1);
+
+        if ($today->lt($start)) {
+            $currentWeek = 0;
+            $percentage = 0;
+        } elseif ($today->gt($end)) {
+            $currentWeek = $totalWeeks;
+            $percentage = 100;
+        } else {
+            $currentWeek = $start->diffInWeeks($today) + 1;
+            $totalDays  = max($start->diffInDays($end), 1);
+            $passedDays = $start->diffInDays($today);
+            $percentage = round(($passedDays / $totalDays) * 100);
+        }
+
+        // =========================
+        // STATUS TAHAP PKL
+        // =========================
+        $docs = $register->registrationDocuments;
+
+        $status = match (true) {
+            $register->status === 'pending' => 'pendaftaran',
+            $docs->whereIn('document_type_id', [18])->isNotEmpty() => 'ujian',
+            $docs->whereIn('document_type_id', [9])->isNotEmpty() => 'monev',
+            $today->gt($end) => 'selesai',
+            default => 'pelaksanaan'
+        };
+
+        // =========================
+        // TIMELINE (TERDEKAT DI ATAS)
+        // =========================
+        $timeline = $register->periode
+            ->timelines()
+            ->orderBy('date', 'asc')
+            ->get()
+            ->map(function ($item) use ($today) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'type' => $item->type,
+                    'date' => $item->date,
+                    'status' => Carbon::parse($item->date)->lt($today)
+                        ? 'passed'
+                        : 'upcoming'
+                ];
+            });
+
+        return response()->json([
+            'progress' => [
+                'status' => $status,
+                'percentage' => $percentage,
+                'current_week' => $currentWeek,
+                'total_weeks' => $totalWeeks
+            ],
+            'mitra' => Mitra::select('id','name','address')->get(),
+            'timeline' => $timeline
+        ]);
+    }
+
+    public function adminDashboard()
+    {
+        // =========================
+        // DOKUMEN STATISTIK (GABUNGAN)
+        // =========================
+        $doc1 = Document::select(
+            DB::raw("SUM(status = 'Disetujui') as approved"),
+            DB::raw("SUM(status = 'Ditolak') as rejected"),
+            DB::raw("SUM(status = 'pending') as pending"),
+            DB::raw("COUNT(*) as total")
+        )->first();
+
+        $doc2 = RegistrationDocument::select(
+            DB::raw("SUM(status = 'Disetujui') as approved"),
+            DB::raw("SUM(status = 'Ditolak') as rejected"),
+            DB::raw("SUM(status = 'pending') as pending"),
+            DB::raw("COUNT(*) as total")
+        )->first();
+
+        // =========================
+        // TOTAL MAHASISWA AKTIF
+        // =========================
+        $totalAwardee = Awardee::whereHas('user', fn ($q) => $q->where('status', 1))->count();
+
+        // =========================
+        // AKTIVITAS TERAKHIR (GABUNGAN)
+        // =========================
+        $latestDocuments = collect()
+
+            // dari documents
+            ->merge(
+                Document::with(['user'])
+                    ->latest()
+                    ->limit(5)
+                    ->get()
+                    ->map(function ($d) {
+                        return [
+                            'source'     => 'document',
+                            'user'       => $d->user->name ?? '-',
+                            'title'      => 'Dokumen Umum',
+                            'status'     => $d->status,
+                            'updated_at'=> $d->updated_at,
+                        ];
+                    })
+            )
+
+            // dari registration_documents
+            ->merge(
+                RegistrationDocument::with(['registration.awardee', 'documentType'])
+                    ->latest()
+                    ->limit(5)
+                    ->get()
+                    ->map(function ($d) {
+                        return [
+                            'source'     => 'registration_document',
+                            'user'       => $d->registration->awardee->fullname ?? '-',
+                            'title'      => $d->documentType->name ?? 'Dokumen PKL',
+                            'status'     => $d->status,
+                            'updated_at'=> $d->updated_at,
+                        ];
+                    })
+            )
+            ->sortByDesc('updated_at')
+            ->take(5)
+            ->values();
+
+        // =========================
+        // STATISTIK BULANAN
+        // =========================
+        $monthly = Register::select(
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('COUNT(*) as total')
+            )
+            ->whereYear('created_at', now()->year)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month')
+            ->get()
+            ->map(fn ($m) => [
+                'month' => Carbon::create()->month($m->month)->format('F'),
+                'total_registration' => $m->total
+            ]);
+
+        return response()->json([
+            'documents' => [
+                'approved' => $doc1->approved + $doc2->approved,
+                'rejected' => $doc1->rejected + $doc2->rejected,
+                'pending'  => $doc1->pending  + $doc2->pending,
+                'total'    => $doc1->total    + $doc2->total,
+            ],
+            'total_awardee' => $totalAwardee,
+            'latest_activity' => $latestDocuments,
+            'monthly_statistics' => $monthly
         ], 200);
     }
 }

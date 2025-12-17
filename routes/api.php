@@ -22,6 +22,9 @@ use App\Http\Controllers\Api\ApiPklController;
 // });
 
 // PUBLIC ROUTES
+Route::get('/__test', function () {
+    return 'API OK';
+});
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -29,12 +32,13 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware('auth:api')->group(function (){
-    Route::get('/study-program', [ApiPklController::class, 'studyProgramList']);
+    Route::get('/awardee/dashboard', [ApiPklController::class, 'awardeeDashboard']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/profile', [AuthController::class, 'profile']); // current user
     Route::post('/profile', [ApiUserController::class, 'updateProfile']);
     Route::get('/periods', [ApiPklController::class, 'getPeriods']);
     Route::get('/mitras', [ApiPklController::class, 'getMitra']);
+    Route::get('/study-program', [ApiPklController::class, 'studyProgramList']);
 
     Route::prefix('documents')->group(function () {
         Route::get('/', [ApiPklController::class, 'getDocument']);
@@ -62,6 +66,7 @@ Route::middleware('auth:api')->group(function (){
 
 Route::prefix('admin')->group(function () {
     Route::middleware('auth:api', 'isAdmin')->group(function (){
+        Route::get('/dashboard', [ApiPklController::class, 'adminDashboard']);
         Route::prefix('documents')->group(function () {
             Route::get('/', [ApiPklController::class, 'documentIndex']);
             Route::get('/{document}', [ApiPklController::class, 'documentShow']);
