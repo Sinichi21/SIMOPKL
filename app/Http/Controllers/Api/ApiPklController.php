@@ -735,9 +735,9 @@ class ApiPklController extends Controller
     }
 
     //Register Show
-    public function awardeeMarkAsComplete($id)
+    public function awardeeMarkAsComplete($register)
     {
-        $register = Register::with('mitra', 'periode', 'awardee', 'awardee.studyProgram')->findOrFail($id);
+        $register = Register::with('mitra', 'periode', 'awardee', 'awardee.studyProgram')->findOrFail($register);
 
         return response()->json([
             'register' => $register
@@ -753,7 +753,7 @@ class ApiPklController extends Controller
         $register->save();
 
         return response()->json([
-            'message' => 'Dokumen berhasil diperbarui',
+            'message' => 'Registrasi berhasil disetujui',
             'data' => $register,
         ], 200);
     }
@@ -767,7 +767,7 @@ class ApiPklController extends Controller
         $register->save();
 
         return response()->json([
-            'message' => 'Dokumen berhasil diperbarui',
+            'message' => 'Registrasi berhasil ditolak',
             'data' => $register,
         ], 200);
     }
@@ -799,8 +799,38 @@ class ApiPklController extends Controller
             ->latest()
             ->with(['registrationDocuments', 'periode', 'mitra'])
             ->first();
+        
+        // =========================
+        // PERIODE AKTIF (UNTUK BELUM DAFTAR)
+        // =========================
+        $activePeriode = Periode::where('status', 'aktif')
+            ->with('timelines')
+            ->first();
+
+        // =========================
+        // DEFAULT RESPONSE (BELUM DAFTAR)
+        // =========================
 
         if (!$register) {
+
+            $timeline = $activePeriode
+                ? $activePeriode->timelines
+                    ->sortBy('start_date')
+                    ->values()
+                    ->map(function ($item) {
+                        return [
+                            'id' => $item->id,
+                            'title' => $item->title,
+                            'type' => $item->type,
+                            'start_date' => $item->start_date,
+                            'end_date' => $item->end_date,
+                            'status' => Carbon::parse($item->start_date)->isPast()
+                                ? 'passed'
+                                : 'upcoming'
+                        ];
+                    })
+                : [];
+
             return response()->json([
                 'progress' => [
                     'status' => 'belum_daftar',
@@ -808,8 +838,14 @@ class ApiPklController extends Controller
                     'current_week' => 0,
                     'total_weeks' => 0
                 ],
-                'mitra' => Mitra::select('id','partner_name','address')->get(),
-                'timeline' => []
+                'periode' => $activePeriode ? [
+                    'id' => $activePeriode->id,
+                    'name' => $activePeriode->name,
+                    'start_date' => $activePeriode->start_date,
+                    'end_date' => $activePeriode->end_date,
+                ] : null,
+                'mitra' => Mitra::select('id', 'partner_name', 'address')->get(),
+                'timeline' => $timeline
             ]);
         }
 
@@ -852,20 +888,21 @@ class ApiPklController extends Controller
         // TIMELINE (TERDEKAT DI ATAS)
         // =========================
         $timeline = $register->periode
-            ->timelines()
-            ->orderBy('date', 'asc')
-            ->get()
-            ->map(function ($item) use ($today) {
-                return [
-                    'id' => $item->id,
-                    'title' => $item->title,
-                    'type' => $item->type,
-                    'date' => $item->date,
-                    'status' => Carbon::parse($item->date)->lt($today)
-                        ? 'passed'
-                        : 'upcoming'
-                ];
-            });
+        ->timelines()
+        ->orderBy('start_date', 'asc')
+        ->get()
+        ->map(function ($item) use ($today) {
+            return [
+                'id' => $item->id,
+                'title' => $item->title,
+                'type' => $item->type,
+                'start_date' => $item->start_date,
+                'end_date' => $item->end_date,
+                'status' => Carbon::parse($item->start_date)->lt($today)
+                    ? 'passed'
+                    : 'upcoming'
+            ];
+        });
 
         return response()->json([
             'progress' => [

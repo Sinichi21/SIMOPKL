@@ -83,8 +83,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/reject/{document}', [ApiPklController::class, 'documentRegistrationReject']);
 
             Route::get('/register/{register}', [ApiPklController::class, 'awardeeMarkAsComplete']);
-            Route::post('/register/approve/{register}', [ApiPklController::class, 'adminUpdateRegisterStatus']);
-            Route::post('/register/reject/{register}', [ApiPklController::class, 'adminUpdateRegisterStatusReject']);
+            Route::post('/register/approve/{id}', [ApiPklController::class, 'adminUpdateRegisterStatus']);
+            Route::post('/register/reject/{id}', [ApiPklController::class, 'adminUpdateRegisterStatusReject']);
         });
     });
 });
