@@ -185,6 +185,8 @@ class ApiPklController extends Controller
         $validated = $request->validate([
             'periode_id' => ['required', 'exists:periodes,id'],
             'mitra_id' => ['required', 'exists:mitras,id'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after:start_date'],
         ]);
 
         // Ambil periode yang sedang diajukan
@@ -207,6 +209,8 @@ class ApiPklController extends Controller
             'email' => $awardee->user->email,
             'periode_id' => $validated['periode_id'],
             'mitra_id' => $validated['mitra_id'],
+            'start_date' => $validated['start_date'],
+            'end_date' => $validated['end_date'],
             'status' => 'pending',
         ]);
 
