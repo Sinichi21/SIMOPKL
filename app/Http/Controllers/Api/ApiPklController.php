@@ -136,6 +136,9 @@ class ApiPklController extends Controller
     {
         $awardee = Auth::user()->awardee;
 
+        $mitras = Mitra::where('status', 1)->get();
+        $periods = Periode::where('status', 1)->get();
+
         if (!$awardee) {
             return response()->json(['message' => 'Awardee tidak ditemukan'], 404);
         }
@@ -171,6 +174,8 @@ class ApiPklController extends Controller
             'progress' => $register->calculateProgress(),
             'status_registrasi' => $register->status,
             'documents' => $documents,
+            'mitras' => $mitras,
+            'periods' => $periods,
             'message' => 'Silahkan lengkapi pendaftaran Anda'
         ], 200);
     }
