@@ -38,7 +38,7 @@ class SendTelegramAlertJob implements ShouldQueue
                 'text' =>
                     "🚨 *CRITICAL ACTIVITY SIMOPKL*\n\n" .
                     "👤 User ID: {$log->user_id}\n" .
-                    "👥 Name: {$name}\n" .
+                    "👥 Name: {$userName}\n" .
                     "⚡ Action: {$log->action}\n" .
                     "📦 Module: {$log->module}\n" .
                     "📝 Desc: {$log->description}\n" .
