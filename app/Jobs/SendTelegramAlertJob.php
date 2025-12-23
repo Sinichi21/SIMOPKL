@@ -26,11 +26,6 @@ class SendTelegramAlertJob implements ShouldQueue
     {
         $log = ActivityLog::with('user')->find($this->logId);
 
-        $userName =
-        $log->user?->awardee?->name
-        ?? $log->user?->name
-        ?? 'Unknown User';
-
         if (! $log) {
             return;
         }
@@ -43,7 +38,7 @@ class SendTelegramAlertJob implements ShouldQueue
                 'text' =>
                     "🚨 *CRITICAL ACTIVITY SIMOPKL*\n\n" .
                     "👤 User ID: {$log->user_id}\n" .
-                    "👥 Name: {$userName}\n" .
+                    "👥 Mail: {$userNameuser->email }\n" .
                     "⚡ Action: {$log->action}\n" .
                     "📦 Module: {$log->module}\n" .
                     "📝 Desc: {$log->description}\n" .
