@@ -193,6 +193,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('logs')->group(function () {
             Route::get('/logs', [LogActivityController::class, 'index'])->name('admin.logs');
             Route::post('/logs/delete', [LogActivityController::class, 'delete'])->name('logs.delete');
+            Route::get('/logs/export', [LogActivityController::class, 'export'])->name('logs.export');
         });
 
         Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile');

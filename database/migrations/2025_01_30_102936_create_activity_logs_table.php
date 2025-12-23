@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->ipAddress('ip_address');
             $table->string('user_agent')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('device_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

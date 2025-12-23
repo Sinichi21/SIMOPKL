@@ -7,15 +7,98 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ActivityLog;
+use App\Jobs\StoreActivityLog;
 
 class IsActivityLog
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-        $actionMethod = $request->route()->getActionMethod();
-        $routeName = $request->route()->getName();
-        $path = $request->path();
+        
+        // $user = Auth::user();
+        // $actionMethod = $request->route()->getActionMethod();
+        // $routeName = $request->route()->getName();
+        // $path = $request->path();
+
+        $response = $next($request);
+
+        // ===============================
+        // DETEKSI REQUEST API
+        // ===============================
+        $isApi = $request->is('api/*');
+
+        $user = Auth::user() ?? Auth::guard('api')->user();
+        $userId = $user?->id;
+
+       if (!$userId) {
+            return $response;
+        }
+
+        // ===============================
+        // LOGIC KHUSUS API
+        // ===============================
+        if ($isApi) {
+
+            // Hindari spam GET
+            $ignoredRoutes = [
+                'api/health',
+                'api/ping'
+            ];
+
+            if (in_array($request->path(), $ignoredRoutes)) {
+                return $response;
+            }
+
+            $action = match (true) {
+                $request->is('api/login') => 'Login',
+                $request->method() === 'POST' || $request->method() === 'GET' => 'Create',
+                $request->method() === 'PUT' || $request->method() === 'PATCH' => 'Update',
+                $request->method() === 'DELETE' => 'Delete',
+                default => 'View',
+            };
+
+            // ActivityLog::create([
+            //     'user_id'    => $userId,
+            //     'action'     => $action,
+            //     'module'     => 'API',
+            //     'description'=> 'API access: ' . $request->method() . ' ' . $request->path(),
+            //     'ip_address' => $request->ip(),
+            //     'user_agent' => $request->userAgent()
+            //         ?: trim(
+            //             ($request->header('X-App-Platform') ?? '') . ' ' .
+            //             ($request->header('X-App-Version') ?? '')
+            //         ) ?: 'Unknown',
+            //     'platform'  => $request->header('X-App-Platform'),
+            //     'device_id' => $request->header('X-Device-Id'),
+            // ]);
+
+            $severity = match ($action) {
+                'Delete' => 'warning',
+                'Create' => 'critical',
+                'Login'  => 'info',
+                'Update' => 'info',
+                default  => 'info',
+            };
+
+            StoreActivityLog::dispatch([
+                'user_id'    => $userId,
+                'action'     => $action,
+                'module'     => 'API',
+                'description'=> 'API access: ' . $request->method() . ' ' . $request->path(),
+                'severity'   => $severity,
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'platform'   => $request->header('X-App-Platform'),
+                'device_id'  => $request->header('X-Device-Id'),
+            ]);
+
+            return $response;
+        }
+
+        // ===============================
+        // LOGIC WEB (ASLI - TIDAK DIUBAH)
+        // ===============================
+        $actionMethod = $request->route()?->getActionMethod();
+        $routeName = $request->route()?->getName();
 
         // Daftar deskripsi khusus untuk setiap route
         $routeDescriptions = [
@@ -202,6 +285,11 @@ class IsActivityLog
 
         // Tentukan deskripsi log berdasarkan aksi dan route
         $action = $allowedActions[$actionMethod] ?? null;
+
+        if (!$action) {
+            return $response;
+        }
+        
         $description = $routeDescriptions[$routeName] ?? 'Performing action on module';
         $module = $routeModules[$routeName] ?? 'General';
 
@@ -210,15 +298,35 @@ class IsActivityLog
             $description .= " (Thread ID: $threadId)";
         }
 
+        $severity = match ($action) {
+            'Delete' => 'warning',
+            'Create' => 'critical',
+            'Login'  => 'info',
+            'Update' => 'info',
+            default  => 'info',
+        };
+
         // Hanya log jika aksi ada dalam daftar yang diizinkan
         if ($action) {
-            ActivityLog::create([
-                'user_id' => $user->id,
-                'action' => $action,
-                'module' => $module,
-                'description' => $description,
+            // ActivityLog::create([
+            //     'user_id' => $userId,
+            //     'action' => $action,
+            //     'module' => $module,
+            //     'description' => $description,
+            //     'ip_address' => $request->ip(),
+            //     'user_agent' => $request->userAgent(),
+            // ]);
+
+            StoreActivityLog::dispatch([
+                'user_id'    => $userId,
+                'action'     => $action,
+                'module'     => $module,
+                'description'=> $description,
+                'severity'   => $severity,
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
+                'platform'   => $request->header('X-App-Platform'),
+                'device_id'  => $request->header('X-Device-Id'),
             ]);
         }
 
