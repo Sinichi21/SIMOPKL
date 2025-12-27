@@ -52,6 +52,7 @@ class ApiPklController extends Controller
 
         $letter = Document::create([
             'user_id' => Auth::id(),
+            'name' => DocumentType::find($validated['document_type_id'])->name,
             'document_type_id' => $validated['document_type_id'],
             'description' => $validated['description'] ?? null,
             'status' => 'pending',

@@ -50,7 +50,7 @@ class IsActivityLog
 
             $action = match (true) {
                 $request->is('api/login') => 'Login',
-                $request->method() === 'POST' || $request->method() === 'GET' => 'Create',
+                $request->method() === 'POST' => 'Create',
                 $request->method() === 'PUT' || $request->method() === 'PATCH' => 'Update',
                 $request->method() === 'DELETE' => 'Delete',
                 default => 'View',
@@ -73,6 +73,7 @@ class IsActivityLog
 
             $severity = match ($action) {
                 'Delete' => 'warning',
+                'Failed' => 'critical',
                 'Create' => 'critical',
                 'Login'  => 'info',
                 'Update' => 'info',
@@ -300,6 +301,7 @@ class IsActivityLog
 
         $severity = match ($action) {
             'Delete' => 'warning',
+            'Failed' => 'critical',
             'Create' => 'critical',
             'Login'  => 'info',
             'Update' => 'info',
