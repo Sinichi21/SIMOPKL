@@ -14,6 +14,9 @@ class SendTelegramAlertJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+    public int $timeout = 15;
+
     public int $logId;
 
     public function __construct(int $logId)
@@ -30,7 +33,7 @@ class SendTelegramAlertJob implements ShouldQueue
             return;
         }
 
-        Http::timeout(10)->post(
+        $response = Http::timeout(10)->post(
             'https://api.telegram.org/bot' . config('services.telegram.token') . '/sendMessage',
             [
                 'chat_id' => config('services.telegram.chat_id'),
@@ -45,5 +48,9 @@ class SendTelegramAlertJob implements ShouldQueue
                     "🕒 Time: {$log->created_at}",
             ]
         );
+
+        if (! $response->successful()) {
+            throw new \Exception('Telegram API failed: '.$response->body());
+        }
     }
 }

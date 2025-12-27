@@ -27,8 +27,7 @@ class StoreActivityLog implements ShouldQueue
         $log = ActivityLog::create($this->data);
 
         if (($this->data['severity'] ?? 'info') === 'critical') {
-            SendTelegramAlertJob::dispatch($log->id)
-                ->onQueue('alerts');
+            SendTelegramAlertJob::dispatch($log->id)->afterCommit();;
         }
     }
 }

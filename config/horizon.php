@@ -206,7 +206,7 @@ return [
             'maxTime' => 0,
             'maxJobs' => 0,
             'memory' => 128,
-            'tries' => 1,
+            'tries' => 3,
             'timeout' => 60,
             'nice' => 0,
         ],
@@ -215,21 +215,12 @@ return [
     'environments' => [
         'production' => [
             'supervisor-1' => [
-		'connection' => 'redis',
-		'queue' => ['activity'], // PRIORITY
-            	'balance' => 'auto',
-            	'processes' => 2,
-            	'tries' => 3,
-            ],
-
-	    'alerts' => [
-            	'connection' => 'redis',
-            	'queue' => ['alerts'],
-            	'balance' => 'simple',
-            	'processes' => 1,
-            	'tries' => 1,
-            ],
-        ],
+                'connection' => 'redis',
+                'queue' => ['activity', 'alerts'],
+                'balance' => 'auto',
+                'processes' => 3,
+                'tries' => 3,
+            ],        ],
 
         'local' => [
             'supervisor-1' => [
