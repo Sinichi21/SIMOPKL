@@ -90,7 +90,7 @@ class IsActivityLog
                 'user_agent' => $request->userAgent(),
                 'platform'   => $request->header('X-App-Platform'),
                 'device_id'  => $request->header('X-Device-Id'),
-            ])->afterCommit();
+            ]);
 
             return $response;
         }
@@ -329,10 +329,10 @@ class IsActivityLog
                 'user_agent' => $request->userAgent(),
                 'platform'   => $request->header('X-App-Platform'),
                 'device_id'  => $request->header('X-Device-Id'),
-            ])->afterCommit();
+            ]);
         }
 
-        return $response;
+        return $next($request);
     }
 
 }
