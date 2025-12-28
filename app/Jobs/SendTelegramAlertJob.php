@@ -24,7 +24,7 @@ class SendTelegramAlertJob implements ShouldQueue
 
     public function handle(): void
     {
-        $log = ActivityLog::with('user')->find($this->logId);
+        $log = ActivityLog::find($this->logId);
 
         if (! $log) {
             return;
